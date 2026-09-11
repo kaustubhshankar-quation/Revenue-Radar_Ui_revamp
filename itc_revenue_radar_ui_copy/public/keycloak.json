@@ -1,0 +1,8 @@
+{
+  "realm": "RR_MMX_DEMO",
+  "auth-server-url": "https://devauth.quation.co.in/",
+  "ssl-required": "external",
+  "resource": "wirpo_dev_bypass",
+  "public-client": true,
+  "confidential-port": 0
+}

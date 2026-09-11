@@ -1,0 +1,188 @@
+// ============================================================
+// APP-WIDE BASE + SHELL
+// Body defaults, viewport zoom, workflow app shell layout.
+// Theme colors live in _variables.scss — this file only uses them.
+// ============================================================
+
+@use "../abstracts/variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+// ---------- Zoom tokens ----------
+:root {
+  --rr-zoom: 1;
+  --rr-zoom-vh: 100vh;
+  --rr-zoom-vw: 100vw;
+}
+
+// ---------- Body ----------
+html {
+  font-size: 17px;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--rr-bg-main);
+  color: var(--rr-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body[data-rr-theme="light"] {
+  color-scheme: light;
+}
+
+body[data-rr-theme="dark"] {
+  color-scheme: dark;
+}
+
+body[data-chatbot-fullscreen="true"] {
+  overflow: hidden;
+}
+
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+// ---------- Viewport zoom (992–1600px desktop band) ----------
+@media (min-width: 992px) and (max-width: 1600px) {
+  :root {
+    --rr-zoom: 0.7;
+    --rr-zoom-vh: calc(100vh / var(--rr-zoom));
+    --rr-zoom-vw: calc(100vw / var(--rr-zoom));
+  }
+
+  body {
+    zoom: var(--rr-zoom);
+  }
+
+  .rr-app-shell,
+  .rr-app-main,
+  .dashboard-container,
+  .main-container {
+    min-height: var(--rr-zoom-vh) !important;
+  }
+
+  .rr-sidebar {
+    height: var(--rr-zoom-vh) !important;
+    min-height: var(--rr-zoom-vh) !important;
+  }
+
+  .chatbot-page,
+  .chatbot-sidebar,
+  .chatbot-main {
+    height: var(--rr-zoom-vh) !important;
+    min-height: var(--rr-zoom-vh) !important;
+  }
+
+  .rr-loader-shell {
+    min-height: calc(52vh / var(--rr-zoom)) !important;
+  }
+
+  .modal,
+  .modal-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    width: var(--rr-zoom-vw) !important;
+    height: var(--rr-zoom-vh) !important;
+  }
+
+  .modal {
+    max-width: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    z-index: 2000 !important;
+  }
+
+  .modal-backdrop {
+    z-index: 1990 !important;
+  }
+
+  .modal-dialog {
+    max-width: min(1140px, calc(var(--rr-zoom-vw) - 40px)) !important;
+  }
+}
+
+.rr-keycloak-auth {
+  min-height: var(--rr-zoom-vh);
+  width: var(--rr-zoom-vw);
+  max-width: none;
+}
+
+// ============================================================
+// WORKFLOW APP SHELL
+// DashboardLayput.jsx: .rr-app-shell > .rr-app-main > .rr-app-content
+// ============================================================
+.rr-app-shell {
+  min-height: 100vh;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.rr-app-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--rr-content-grad);
+  color: var(--rr-text-main);
+  min-width: 0;
+  transition: margin-left 0.28s ease, background 0.25s ease, color 0.25s ease;
+  margin-left: 290px;
+
+  &[data-collapsed="true"] {
+    margin-left: 88px;
+  }
+}
+
+.rr-app-content {
+  flex: 1;
+  padding: 24px;
+  min-width: 0;
+}
+
+.rr-app-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--rr-border);
+  background: var(--rr-bg-panel);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media (max-width: 991.98px) {
+  .rr-app-main,
+  .rr-app-main[data-collapsed="true"] {
+    margin-left: 0;
+    padding-top: 72px;
+  }
+
+  .rr-app-content {
+    padding: 14px;
+  }
+}
+
+// ---------- Live utilities ----------
+.noborder {
+  outline: none;
+  border: none;
+}
+
+// ApexCharts — dark menu uses theme tokens
+.apexcharts {
+  font-size: inherit !important;
+}
+
+.apexcharts-yaxis-label {
+  font-size: 10px !important;
+}
+
+[data-rr-theme="dark"] .apexcharts-menu,
+.dark-theme .apexcharts-menu {
+  background: var(--rr-bg-soft);
+  color: var(--rr-text-main);
+  border: 1px solid var(--rr-border);
+}
+
+[data-rr-theme="dark"] .apexcharts-menu-item:hover,
+.dark-theme .apexcharts-menu-item:hover {
+  background: var(--rr-bg-card-soft);
+}

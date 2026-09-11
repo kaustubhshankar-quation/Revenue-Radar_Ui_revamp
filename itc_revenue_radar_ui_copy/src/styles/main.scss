@@ -1,0 +1,10 @@
+// ============================================================
+// GLOBAL STYLES ENTRY POINT
+// Imported once in src/index.js. All app styling lives here;
+// components must not carry <style> tags or static inline styles.
+// ============================================================
+
+@use "abstracts/variables";
+@use "base/global";
+@use "components/components";
+@use "pages/pages";

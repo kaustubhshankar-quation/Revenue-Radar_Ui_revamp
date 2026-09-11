@@ -1,0 +1,54 @@
+<svg width="900" height="260" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="qOrangeDark" x1="40" y1="30" x2="130" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8A3D"/>
+      <stop offset="100%" stop-color="#FF6A13"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="260" rx="28" fill="#0F172A"/>
+  <rect x="8" y="8" width="884" height="244" rx="22" stroke="#1E293B" stroke-width="1.5" fill="none"/>
+
+  <!-- subtle dashboard accents -->
+  <circle cx="840" cy="30" r="80" fill="#111827" opacity="0.55"/>
+  <circle cx="818" cy="214" r="96" fill="#0B1220" opacity="0.95"/>
+
+  <!-- Q icon closer to original -->
+  <g transform="translate(18,8)">
+    <path d="M76 24
+             C99 24 118 33 131 48
+             C144 63 150 82 149 101
+             C148 120 140 136 127 149
+             L142 167"
+          stroke="url(#qOrangeDark)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M142 167 C147 172 147 180 142 185 C137 190 129 190 124 184 L108 167"
+          fill="url(#qOrangeDark)"/>
+    <path d="M108 167
+             C94 174 78 177 61 175
+             C42 173 27 166 17 155"
+          stroke="url(#qOrangeDark)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M17 55
+             C28 37 49 24 76 24"
+          stroke="url(#qOrangeDark)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <path d="M24 49
+             H73
+             C78 49 82 53 82 58
+             C82 63 78 67 73 67
+             H46
+             L61 84
+             C64 88 64 94 60 98
+             L43 116
+             H78
+             C83 116 87 120 87 125
+             C87 130 83 134 78 134
+             H24"
+          stroke="url(#qOrangeDark)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <g transform="translate(170,30)">
+    <text x="0" y="92" font-size="92" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700" letter-spacing="1.2" fill="#CBD5E1">UATION</text>
+    <text x="90" y="140" font-size="25" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700" letter-spacing="0.3" fill="#FF7A1A">Powering Data. Empowering Decisions.</text>
+    <text x="0" y="214" font-size="38" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="700" fill="#E2E8F0">Quation Solutions Pvt. Ltd.</text>
+  </g>
+</svg>

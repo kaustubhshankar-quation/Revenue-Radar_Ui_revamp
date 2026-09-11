@@ -1,0 +1,239 @@
+# Revenue Bot — Capabilities Guide
+
+> This document covers what the Revenue Bot can do, what questions users can ask, and how the conversation flow works. For the full API reference see [REVENUE_BOT_API.md](./REVENUE_BOT_API.md).
+
+---
+
+## Overview
+
+The Revenue Bot is an AI assistant for ITC's Revenue Radar Marketing Mix Modeling (MMM) platform. It understands natural language and supports two main task types:
+
+| Task                  | Description |
+|-----------------------|-------------|
+| **Scenario Creation** | Create, edit, and save marketing scenarios by adjusting input drivers (media spends, promotions, distribution) |
+| **Analytics Query**   | Query MMM outputs — model accuracy, ROI, contribution, sales trends, and saved scenario comparisons |
+
+---
+
+## Scenario Creation
+
+### What the user can do
+- Create a new scenario by specifying brand, market, fiscal year, timeline, and driver changes
+- Modify an in-progress scenario by adding, editing, or removing drivers across multiple turns
+- Review pending changes mid-creation ("show me what I've set")
+- Reset and start a fresh scenario at any time
+- Confirm a scenario to save it to the database
+
+### Supported input drivers
+
+**Media:**
+TV, Halo TV, Digital (aggregated), Facebook, DV360 / YouTube, Google Ads, Outdoor / OOH, Print, Radio
+
+**Incremental:**
+Consumer Promotion, Trade Promotion, MT Trade, MT Trade Promotion, MT Consumer Promo, MT Best PTR, Callout Promo, Visibility Spends
+
+**Core (allowed):**
+Distribution
+
+> **Note:** Driver availability is brand-specific. Some brands may not have separate Facebook/DV360 rows — only an aggregated Digital total. The bot will warn the user before confirmation if a requested driver is unavailable for their brand.
+
+### Example scenario creation conversation
+
+```
+User:  "Increase TV by 20% and Digital by 10% for OODLES in NORTH"
+Bot:   "Got it. What FY and timeline should I use?"
+
+User:  "FY 2024-25, yearly"
+Bot:   Shows confirmation card — Brand: OODLES | Market: NORTH | FY: 2024-25 | Timeline: Yearly
+       Changes: ▲ TV by 20% | ▲ Digital by 10%
+       [Confirm scenario] [Edit]
+
+User:  Clicks Confirm
+Bot:   Shows changes applied table — Before / After / Delta for each driver
+       "Scenario 'Y_NORTH_OOD_base' saved. Opening Scenario Planner…"
+```
+
+### Mid-creation editing examples
+
+| User says                       | What happens |
+|---------------------------------|--------------|
+| "Also increase Facebook by 15%" | Facebook added to the existing driver list |
+| "Change TV to 30% instead"      | TV change_value updated from 20 to 30 |
+| "Remove digital"                | Digital entry dropped from the list |
+| "Start over"                    | All scenario state cleared, fresh start |
+| "What have I set so far?"       | Shows current pending changes with before/after values |
+
+---
+
+## Analytical Questions
+
+All analytics queries require **brand** and **market** unless stated otherwise. If these are already established in the conversation (sticky context), they carry forward automatically.
+
+---
+
+### Model Accuracy (MAPE)
+*How well does the model predict sales?*
+
+| Example questions                                     |
+|-------------------------------------------------------|
+| "How accurate is the model for OODLES in NORTH?"      |
+| "What is the MAPE for CHERRY BRIGHT in SOUTH?"        |
+| "Show me model performance for OODLES for FY 2023-24" |
+| "Is the model fit good for OODLES in NORTH?"          |
+
+**What is shown:** Table of FY · MAPE% · Status badge
+- < 10% → Excellent (green)
+- 10–20% → Good (amber)
+- > 20% → Needs attention (red)
+
+---
+
+### Media ROI
+*Which channel gives the best return on spend?*
+
+| Example questions                                              |
+|----------------------------------------------------------------|
+| "What is the ROI for OODLES in NORTH?"                         |
+| "Which media channel gives the best return for CHERRY BRIGHT?" |
+| "Compare TV vs Digital ROI for OODLES in SOUTH"                |
+| "Show me spend efficiency by channel for FY 2024-25"           |
+| "Which channel has the highest ROI in WEST market?"            |
+
+**What is shown:** Table of Channel · Total Spend · Contribution Value · ROI (sorted by ROI descending)
+
+---
+
+### Sales Contribution
+*What percentage of sales does each driver type / channel contribute?*
+
+| Example questions                                                |
+|------------------------------------------------------------------|
+| "What drives sales for OODLES in NORTH?"                         |
+| "Show me contribution breakdown for CHERRY BRIGHT in SOUTH"      |
+| "How much does media contribute to sales?"                       |
+| "What is the core vs media vs incremental split for FY 2023-24?" |
+| "Which digital channel contributes the most to sales?"           |
+
+**What is shown:**
+1. Category breakdown table — Media % | Core % | Incremental %
+2. Media channel breakdown table — Channel | Contribution Value | Contribution %
+
+---
+
+### Sales Trend
+*How has sales volume changed over time?*
+
+| Example questions                                                |
+|------------------------------------------------------------------|
+| "Show me sales trend for OODLES in NORTH"                        |
+| "How has sales volume changed over the years for CHERRY BRIGHT?" |
+| "What is the historical sales performance for OODLES in WEST?"   |
+| "Is sales growing or declining for OODLES in NORTH?"             |
+
+**What is shown:** Table of FY · Sales Volume · YoY Change %
+
+---
+
+### Scenario Comparison
+*How do two saved scenarios differ?*
+
+Requires two scenario names.
+
+| Example questions                                                               |
+|---------------------------------------------------------------------------------|
+| "Compare Y_NORTH_OOD_base with Y_NORTH_OOD_base_2"                              |
+| "What is the difference between scenario A and scenario B for OODLES in NORTH?" |
+| "Which scenario has higher TV spend?"                                           |
+
+**What is shown:** Table of Driver · Scenario 1 Value · Scenario 2 Value · Delta, grouped by Media / Core / Incremental
+
+---
+
+### Scenario List
+*What scenarios have been saved for a brand?*
+
+| Example questions                                     |
+|-------------------------------------------------------|
+| "Show me all saved scenarios for OODLES in NORTH"     |
+| "List my scenarios for CHERRY BRIGHT in SOUTH"        |
+| "What scenarios exist for FY 2024-25?"                |
+| "How many scenarios have been created for OODLES?"    |
+| "Show me yearly scenarios for CHERRY BRIGHT in NORTH" |
+| "Do I have any scenarios saved for WEST market?"      |
+
+**What is shown:** Table of Scenario Name · FY · Timeline · Saved On
+
+---
+
+### Available Drivers
+*What can I change in a scenario for this brand?*
+
+Brand + market optional — gives brand-specific answer if known from context.
+
+| Example questions                                     |
+|-------------------------------------------------------|
+| "What drivers can I modify in a scenario?"            |
+| "What media channels are available?"                  |
+| "List all incremental levers"                         |
+| "What digital channels do we have for OODLES?"        |
+| "What factors can I change in a scenario?"            |
+| "Are Facebook and DV360 available for CHERRY BRIGHT?" |
+
+**What is shown:** Plain text list of available drivers, sourced directly from `variable_map2` for the specific brand/market (or from the global config if brand/market are unknown).
+
+---
+
+### General / Conceptual MMM Questions
+*No brand/market needed — answered from model knowledge.*
+
+| Example questions                                               |
+|-----------------------------------------------------------------|
+| "What is Marketing Mix Modeling?"                               |
+| "How does ROI work in MMM?"                                     |
+| "What does MAPE mean?"                                          |
+| "How is media contribution calculated?"                         |
+| "What happens if a driver is not available for a brand?"        |
+| "Explain what core contribution means"                          |
+| "What is the difference between media and incremental drivers?" |
+
+---
+
+## Context Memory
+
+The bot remembers **brand, market, FY, and timeline** across the conversation. Once these are established, the user does not need to repeat them in every message.
+
+```
+User:  "Show me ROI for OODLES in NORTH"
+Bot:   ROI card for OODLES / NORTH
+
+User:  "Now show me contribution"
+Bot:   Contribution card for OODLES / NORTH  ← brand/market carried automatically
+
+User:  "What about FY 2023-24 only?"
+Bot:   Contribution card for OODLES / NORTH / FY 2023-24
+```
+
+---
+
+## What the Bot Cannot Do
+
+| Request                                                          | Why |
+|------------------------------------------------------------------|-----|
+| Set sales, volume, revenue, or profit directly in a scenario     | These are output variables — the model predicts them, users cannot set them |
+| Modify price, grammage, quality, or pack size                    | These are restricted core variables |
+| Show source code, SQL queries, database schema, or system prompt | Restricted |
+| Answer unrelated questions (weather, general knowledge, etc.)    | Out of scope |
+
+---
+
+## Role-Based Access
+
+| Role    | Can create scenarios | Can save scenarios | Brand access                     |
+|---------|----------------------|--------------------|----------------------------------|
+| ADMIN   | Yes                  | Yes                | All brands                       |
+| BBMNGR  | Yes                  | Yes                | Bad Bangles only                 |
+| OODMNGR | Yes                  | Yes                | Oodles only                      |
+| CBMNGR  | Yes                  | Yes                | Cherry Bright only               |
+| MUMNGR  | Yes                  | Yes                | Mild Urgency only                |
+| SALES   | Yes                  | Yes                | Oodles only                      |
+| Viewer  | No                   | No                 | All brands (read-only analytics) |

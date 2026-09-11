@@ -1,0 +1,32 @@
+{
+    "maskedBrandOption": {
+        "BINGO OS": "BONGO SALTED",
+        "BINGO PC": "BONGO SPECIAL",
+        "BOUNCE": "OUNCE",
+        "DARK FANTASY": "MILD FANTASY",
+        "MAD ANGLES": "BAD GANGLES",
+        "MARIE LIGHT": "CHERRY WHITE",
+        "MOMS MAGIC": "DADS LOVE",
+        "TEDHE MEDHE": "SEEDHE SADHE",
+        "YIPPEE NOODLES": "CHIPPEE NOODLES",
+        "CHERRY BRIGHT":"CHERRY BRIGHT",
+        "MILD URGENCY":"MILD URGENCY",
+        "BAD BANGLES":"BAD BANGLES",
+        "OODLES":"OODLES"
+    },
+    "unMaskedBrandOption": {
+        "BONGO SALTED": "BINGO OS",
+        "BONGO SPECIAL": "BINGO PC",
+        "OUNCE": "BOUNCE",
+        "MILD FANTASY": "DARK FANTASY",
+        "BAD GANGLES": "MAD ANGLES",
+        "CHERRY WHITE": "MARIE LIGHT",
+        "DADS LOVE": "MOMS MAGIC",
+        "SEEDHE SADHE": "TEDHE MEDHE",
+        "CHIPPEE NOODLES": "YIPPEE NOODLES",
+        "CHERRY BRIGHT":"CHERRY BRIGHT",
+        "MILD URGENCY":"MILD URGENCY",
+        "BAD BANGLES":"BAD BANGLES",
+        "OODLES":"OODLES"
+    }
+}

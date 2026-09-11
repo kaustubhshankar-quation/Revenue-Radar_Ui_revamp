@@ -1,0 +1,43 @@
+/* Hourglass Loader */
+.hourglass {
+  position: relative;
+  width: 60px;
+  height: 100px;
+  margin: 30px auto;
+  background: transparent;
+}
+
+.hourglass::before,
+.hourglass::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+}
+
+.hourglass::before {
+  top: 0;
+  border-bottom: 50px solid #e59400; /* top triangle (sand) */
+  animation: sandTop 3s infinite;
+}
+
+.hourglass::after {
+  bottom: 0;
+  border-top: 50px solid #e59400; /* bottom triangle (sand) */
+  animation: sandBottom 3s infinite;
+}
+
+/* Falling Sand Effect */
+@keyframes sandTop {
+  0%   { border-bottom-color: #e59400; }
+  50%  { border-bottom-color: transparent; }
+  100% { border-bottom-color: #e59400; }
+}
+
+@keyframes sandBottom {
+  0%   { border-top-color: transparent; }
+  50%  { border-top-color: #e59400; }
+  100% { border-top-color: transparent; }
+}

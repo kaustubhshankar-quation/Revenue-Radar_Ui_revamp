@@ -1,0 +1,3462 @@
+{
+    "data":[
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Average Price for WAI WAI DL",
+            "attribute_backend": "Average Price for WAI WAI DL",
+            "subtotal": 9953.344178404168,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Competition Price -Wai Wai",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 740.6673562667158,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 732.2293276594102,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 939.6029660782849,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 983.6644451886584,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 766.096550719892,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 755.8824535484348,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 932.6579127964176,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 751.7520981872001,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 935.2237211641573,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 744.1689823717948,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 744.2236182892747,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 927.1747461339271,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Print",
+            "attribute_backend": "Print",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Print",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Distribution",
+            "attribute_backend": "Distribution",
+            "subtotal": 1023334.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "number (count)",
+            "variable_type": "Distribution",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 65946.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 68276.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 86080.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 96585.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 80182.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 84733.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 105765.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 84665.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 98311.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 70764.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 79877.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 102150.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Suru Magic Hua",
+            "attribute_backend": "TV Suru Magic Hua",
+            "subtotal": 0.40961100000000006,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.40961100000000006,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Winter Campaign",
+            "attribute_backend": "TV Winter Campaign",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Visibility C and C",
+            "attribute_backend": "Visibility C and C",
+            "subtotal": 619096.5193739084,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Trade Promotion-C&C",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 48063.91075763969,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 64710.38469080093,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 241366.34455611662,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 12383.58258504228,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 3032.145841820695,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 4359.75461870817,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 38977.550753154734,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 51388.70293244638,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 30229.634496022234,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 19176.15140464381,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 19481.037712481506,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 85927.31902503145,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP FreeGift",
+            "attribute_backend": "CP FreeGift",
+            "subtotal": 1761383.160036,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 258309.39250000002,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 44176.72115,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 23557.19005,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 37.800016,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 61.06561,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 30.05856,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 84.23326,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 137295.24970000001,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 271020.99983,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 127457.67264,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 310873.17463,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 588479.6020900001,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP ConsumerPromotion",
+            "attribute_backend": "CP ConsumerPromotion",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "End of Financial Year2",
+            "attribute_backend": "End of Financial Year2",
+            "subtotal": 2.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Fixed Value of 0",
+            "variable_type": "Dummy",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 1.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 1.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Mood Campaign",
+            "attribute_backend": "TV Mood Campaign",
+            "subtotal": 10.482835999999999,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 3.9615899999999997,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 6.521246,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CompTV Maggi",
+            "attribute_backend": "CompTV Maggi",
+            "subtotal": 6921.087472000001,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "Competition TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 506.26792599999993,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 341.0362040000001,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 701.0650109999999,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 946.6031299999995,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 179.91888999999998,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 1051.2861690000009,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 509.0298270000002,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 996.87746,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 458.03114500000027,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 754.8886860000003,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 107.75096499999998,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 368.332059,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Kids Campaign",
+            "attribute_backend": "TV Kids Campaign",
+            "subtotal": 10.482835999999999,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 3.9615899999999997,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 6.521246,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Noodles AVP Single Block",
+            "attribute_backend": "Noodles AVP Single Block",
+            "subtotal": 10621.780235350665,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Target Price calculated on block(Single or Half)",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 798.5820490150855,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 800.9400168761273,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 999.9208001112927,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 999.1112710369443,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 801.9573560337708,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 801.0711741771493,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 1006.8550613178245,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 802.473850802683,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 1004.4330321109721,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 804.1242489272184,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 801.5053612616914,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 1000.8060136799053,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Monsoon (May)",
+            "attribute_backend": "Monsoon (May)",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "0 or 1",
+            "variable_type": "Dummy",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Competetion Price Maggi",
+            "attribute_backend": "Competetion Price Maggi",
+            "subtotal": 10741.247392852825,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Competition Price-Maggi",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 823.5559006583146,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 824.7197667022737,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 1036.383760117864,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 994.4000866284618,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 789.4693045297759,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 798.5892576963124,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 1002.4664686356874,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 807.8366648857186,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 1018.4604798546143,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 804.9103948188496,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 811.0864465786113,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 1029.3688617463408,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Tray Promo",
+            "attribute_backend": "TV Tray Promo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Tradespends_Wholesale",
+            "attribute_backend": "Tradespends_Wholesale",
+            "subtotal": 7721744.472617357,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Trade Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 702464.8608118555,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 436568.39885699225,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 463175.4356213006,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 519742.8712388825,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 522156.5259209706,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 581722.6708777822,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 671762.8521844485,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 725695.726873065,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 858712.7797370661,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 522186.72245076654,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 635482.7323748122,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 1082072.8956694147,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Recipe",
+            "attribute_backend": "TV Recipe",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP: Mood Promo",
+            "attribute_backend": "CP: Mood Promo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Youtube DV360 Ads",
+            "attribute_backend": "Youtube DV360 Ads",
+            "subtotal": 4079487.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Impressions",
+            "variable_type": "DV360",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 157768.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 3613050.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 305052.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 3617.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Noodles AVP Half Block",
+            "attribute_backend": "Noodles AVP Half Block",
+            "subtotal": 10035.642677007067,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Target Price calculated on block(Single or Half)",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 792.409165793103,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 795.0275887310836,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 995.4663368493011,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 833.5758699602432,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 675.0194661743907,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 703.4201343815431,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 932.1097138477672,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 771.4330220898498,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 976.3052304444946,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 786.0440559615812,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 788.2678587184425,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 986.564234055267,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Tradespends_Retail",
+            "attribute_backend": "Tradespends_Retail",
+            "subtotal": 5732336.4038628945,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Trade Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 305146.6568976712,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 402986.4763651054,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 517655.82019568846,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 426227.09388235095,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 343887.6256180747,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 459572.1753162325,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 527995.8546286444,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 544525.7423002488,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 543043.9691765888,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 462945.2213196144,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 424126.74575827294,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 774223.0224044024,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Dhoni Campaign",
+            "attribute_backend": "TV Dhoni Campaign",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "WD Maagi",
+            "attribute_backend": "WD Maagi",
+            "subtotal": 4120.800249999999,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Weighted Distribution-Maggi",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 308.635,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 302.7975,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 380.3087499999999,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 380.4245,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 314.786,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 314.1635,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 400.06125,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 314.65725,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 391.23249999999996,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 314.479,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 310.61125,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 388.64375,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Google Ads",
+            "attribute_backend": "Google Ads",
+            "subtotal": 876.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Impressions",
+            "variable_type": "Google ads",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 876.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP CrossCategory",
+            "attribute_backend": "CP CrossCategory",
+            "subtotal": 631424.4554999999,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 135946.3555,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 349856.1394,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 130153.7323,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 12476.9698,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 1829.2249,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 1162.0336,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP ValuePromo",
+            "attribute_backend": "CP ValuePromo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Diwali (Festive) Event",
+            "attribute_backend": "Diwali (Festive) Event",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "0 or 1",
+            "variable_type": "Dummy",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Promo Campaign",
+            "attribute_backend": "TV Promo Campaign",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Yippee! Contest",
+            "attribute_backend": "TV Yippee! Contest",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "CP BundlePromo",
+            "attribute_backend": "CP BundlePromo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Consumer Promotion",
+            "type": "Incremental",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Intercept",
+            "attribute_backend": "Intercept",
+            "subtotal": 53.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Fixed Value of 1",
+            "variable_type": "Intercept",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 5.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 5.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 5.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 5.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 4.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 5.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TDP Maagi Total Promo",
+            "attribute_backend": "TDP Maagi Total Promo",
+            "subtotal": 3306.730583333334,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "TDP Maagi Total Promo",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 281.91900000000004,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 248.5125,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 354.3179166666667,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 211.08374999999998,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 210.50699999999995,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 240.85733333333332,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 287.0763333333333,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 278.32800000000003,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 356.9241666666668,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 263.8333333333333,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 249.78583333333333,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 323.5854166666668,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "OOH",
+            "attribute_backend": "OOH",
+            "subtotal": 1855436.4999999995,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "INR",
+            "variable_type": "Outdoor",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 556630.9499999998,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 1298805.5499999996,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV Jackpot Promo",
+            "attribute_backend": "TV Jackpot Promo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "TV LootlmaalPromo",
+            "attribute_backend": "TV LootlmaalPromo",
+            "subtotal": 0.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "GRP",
+            "variable_type": "TV",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 0.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Facebook",
+            "attribute_backend": "Facebook",
+            "subtotal": 33013192.0,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Impressions",
+            "variable_type": "Facebook",
+            "type": "Media",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 229607.0,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 1495488.0,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 4351299.0,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 870418.0,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 6311574.0,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 1740711.0,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 1989740.0,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 8812941.0,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 7031959.0,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 72046.0,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 90420.0,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 16989.0,
+                    "month_year": "2026-03"
+                }
+            ]
+        },
+        {
+            "category": "ND",
+            "brand": "YIPPEE NOODLES",
+            "fy": "2025-26",
+            "final_market": "APTG",
+            "scope": 1,
+            "attribute_name": "Channel Shift to MT",
+            "attribute_backend": "Channel Shift to MT",
+            "subtotal": 18.067847610005447,
+            "description": "na",
+            "allow_decimal": 0,
+            "frozen": 0,
+            "to_show_in": "na",
+            "units": "Ratio btw 0 and 1",
+            "variable_type": "Channel shift to MT&EC",
+            "type": "Core",
+            "month_data": [
+                {
+                    "month": 1,
+                    "frozen": 0,
+                    "attribute_value": 1.4824907952309347,
+                    "month_year": "2025-04"
+                },
+                {
+                    "month": 2,
+                    "frozen": 0,
+                    "attribute_value": 1.3737354423771149,
+                    "month_year": "2025-05"
+                },
+                {
+                    "month": 3,
+                    "frozen": 0,
+                    "attribute_value": 1.766703804974746,
+                    "month_year": "2025-06"
+                },
+                {
+                    "month": 4,
+                    "frozen": 0,
+                    "attribute_value": 1.7599349116005463,
+                    "month_year": "2025-07"
+                },
+                {
+                    "month": 5,
+                    "frozen": 0,
+                    "attribute_value": 1.236898204154961,
+                    "month_year": "2025-08"
+                },
+                {
+                    "month": 6,
+                    "frozen": 0,
+                    "attribute_value": 1.1008375234275758,
+                    "month_year": "2025-09"
+                },
+                {
+                    "month": 7,
+                    "frozen": 0,
+                    "attribute_value": 1.755374585851331,
+                    "month_year": "2025-10"
+                },
+                {
+                    "month": 8,
+                    "frozen": 0,
+                    "attribute_value": 1.39628287674145,
+                    "month_year": "2025-11"
+                },
+                {
+                    "month": 9,
+                    "frozen": 0,
+                    "attribute_value": 1.5786777722109226,
+                    "month_year": "2025-12"
+                },
+                {
+                    "month": 10,
+                    "frozen": 0,
+                    "attribute_value": 1.399976682932073,
+                    "month_year": "2026-01"
+                },
+                {
+                    "month": 11,
+                    "frozen": 0,
+                    "attribute_value": 1.4185736117306043,
+                    "month_year": "2026-02"
+                },
+                {
+                    "month": 12,
+                    "frozen": 0,
+                    "attribute_value": 1.7983613987731843,
+                    "month_year": "2026-03"
+                }
+            ]
+        }
+    ]
+}

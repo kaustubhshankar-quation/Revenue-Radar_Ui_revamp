@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="360" viewBox="0 0 520 180">
+  <defs>
+    <linearGradient id="rr-bars" x1="40" y1="140" x2="170" y2="20">
+      <stop offset="0%" stop-color="#12B886"/>
+      <stop offset="100%" stop-color="#0B8F74"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="518" height="178" rx="20" fill="#FFFFFF" stroke="rgba(15,23,42,0.08)" stroke-width="2"/>
+  <rect x="40" y="110" width="22" height="30" rx="3" fill="url(#rr-bars)"/>
+  <rect x="75" y="95" width="22" height="45" rx="3" fill="url(#rr-bars)"/>
+  <rect x="110" y="70" width="22" height="70" rx="3" fill="url(#rr-bars)"/>
+  <rect x="145" y="30" width="22" height="110" rx="3" fill="url(#rr-bars)"/>
+  <path d="M30 100 C60 90, 85 80, 105 60 S140 40, 160 12" stroke="#12B886" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M145 18 L160 12 L155 28" stroke="#12B886" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="70" fill="#03363D" font-size="48" font-weight="800" font-family="Segoe UI, Inter, sans-serif">Revenue</text>
+  <text x="190" y="125" fill="#FFFFFF" stroke="#12B886" stroke-width="3.5" font-size="52" font-weight="800" font-family="Segoe UI, Inter, sans-serif">Radar</text>
+  <text x="40" y="165" fill="#1F2937" font-size="22" font-weight="600" font-family="Segoe UI, Inter, sans-serif">Powered By Quation</text>
+</svg>
