@@ -4,11 +4,12 @@ import { useOutletContext } from "react-router-dom";
 import UserService from "../../services/UserService.js";
 import Select, { components } from "react-select";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getNotification from "../../Redux/Action/action.js";
 import Loader from "react-js-loader";
 import LoaderCustom from "../LoaderCustom.jsx";
-import { downloadPdf, uploadPDF, notifyRequestError, requireLogin, defaultJsonHeaders, toSelectOptions } from "../HelperFunction/helperFunction.js";
+import { downloadPdf, uploadPDF, notifyRequestError, requireLogin, defaultJsonHeaders, toSelectOptions, filterBrandsByRole } from "../HelperFunction/helperFunction.js";
+import { loadMarkets } from "../../Redux/session/sessionSlice";
 import StackBarChart from "./StackBarChart.jsx";
 import ExceptionVariables from '../JSON Files/ExceptionVariables.json'
 import LineBarChartBrandAnalysis from "./LineBarChartBrandAnalysis.jsx";
@@ -27,7 +28,6 @@ function BrandAnalysis() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [brandoptions, setbrandoptions] = useState([]);
-  const [marketoptions, setmarketoptions] = useState([]);
   const [market, setmarket] = useState([]);
   const [loader, setloader] = useState(false);
   const [baVariablesRecived, setBAVariablesRecieved] = useState(false);
@@ -35,6 +35,12 @@ function BrandAnalysis() {
   const [showReportModal, setShowReportModal] = useState(false);
   const [resultscreen, setresultscreen] = useState(false);
   const [selectedbrand, setselectedbrand] = useState("");
+  const marketsByBrand = useSelector((state) => state.session?.marketsByBrand || {});
+  const rawMarkets = marketsByBrand[selectedbrand] || [];
+  const marketoptions = rawMarkets.map((it) => ({
+    value: it.final_market,
+    label: it.final_market,
+  }));
   const [variableslist, setvariableslist] = useState([]);
   const [variable, setvariable] = useState([]);
   const [selectedvariable, setselectedvariable] = useState([]);
@@ -61,46 +67,7 @@ function BrandAnalysis() {
   const handlefetchmarket = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-        sendData.append("brand", selectedbrand)
-        const config = {
-          method: "post",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_markets`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        // console.log(getResponse)
-        if (getResponse.data !== "Invalid User!") {
-          const markets = getResponse.data.markets;
-          if (UserService.hasRole(["SALES"])) {
-            // let finalmarkets = markets?.filter(it => it.final_market === "EAST");
-            setmarketoptions(
-              [
-                // Add Select All option
-                ...markets?.map((it) => ({
-                  value: it.final_market,
-                  label: it.final_market,
-                })),
-              ]
-            )
-          }
-          else {
-            setmarketoptions(
-              [
-                // Add Select All option
-                ...markets?.map((it) => ({
-                  value: it.final_market,
-                  label: it.final_market,
-                })),
-              ]
-            );
-          }
-
-        }
+        await dispatch(loadMarkets(selectedbrand)).unwrap();
       } catch (err) {
 
       }
@@ -193,33 +160,16 @@ function BrandAnalysis() {
         if (getResponse.data !== "Invalid User!") {
           setStartDate(reverseDate(getResponse.data.dates[0].min[0].start_date));
           setEndDate(reverseDate(getResponse.data.dates[0].max[0].end_date));
-          const filteredBrands = getResponse.data.brands
-            ?.filter(it => !ExceptionVariables?.brandoptionshide?.includes(it?.brand))
-            ?.map(it => ({
+          const filteredBrands = filterBrandsByRole(
+            getResponse.data.brands || [],
+            ExceptionVariables?.brandoptionshide
+          );
+          setbrandoptions(
+            filteredBrands?.map((it) => ({
               value: it.brand,
               label: maskedBrandOption.maskedBrandOption[it.brand.trim().toUpperCase()]
-            }));
-
-          let finalBrands = filteredBrands;
-
-          // Role-based filtering
-          if (UserService.hasRole(["BBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "BAD BANGLES");
-          }
-          else if (UserService.hasRole(["OODMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "OODLES");
-          }
-          else if (UserService.hasRole(["SALES"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "OODLES");
-          }
-          else if (UserService.hasRole(["MUMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "MILD URGENCY");
-          }
-          else if (UserService.hasRole(["CBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "CHERRY BRIGHT");
-          }
-          // Set once
-          setbrandoptions(finalBrands);
+            })) || []
+          );
 
         }
       } catch (err) {
@@ -748,7 +698,6 @@ function BrandAnalysis() {
                     setmarket([]);
                     setselectedbrand("");
                     setvariablesoptions([]);
-                    setmarketoptions([]);
                     setDownloadUrl("");
                   }}
                   disabled={loading}

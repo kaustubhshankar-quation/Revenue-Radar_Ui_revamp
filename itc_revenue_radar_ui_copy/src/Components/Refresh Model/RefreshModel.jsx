@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Loader from "react-js-loader";
 import UserService from '../../services/UserService';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getNotification from '../../Redux/Action/action';
+import { loadBrandFy } from '../../Redux/session/sessionSlice';
 import swal from 'sweetalert'
 import axios from 'axios'
 import Select, { components } from "react-select";
-import ExceptionVariables from '../JSON Files/ExceptionVariables.json'
 import LoaderCustom from '../LoaderCustom';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -17,7 +17,6 @@ const { REACT_APP_UPLOAD_DATA } = process.env;
 
 function RefreshModel() {
   const [modifybtn, setmodifybtn] = useState(false)
-  const [brandoptions, setbrandoptions] = useState([]);
   const [selectedbrand, setselectedbrand] = useState("");
   const [timetorefresh, settimetorefresh] = useState(9000);
   const [percentagetoshowonloader, setpercentagetoshowonloader] = useState(0);
@@ -34,6 +33,11 @@ function RefreshModel() {
   const [newrecordstable, setnewrecordstable] = useState([])
   let counter = 1;
   const dispatch = useDispatch();
+  const sessionBrandOptions = useSelector((state) => state.session?.brandOptions || []);
+  const brandoptions = sessionBrandOptions.map((it) => ({
+    value: it.brand,
+    label: it.brand,
+  }));
 
   const [pullingDataFlag, setPullingDataFlag] = useState(false)
   const [pushingDataFlag, setPushingDataFlag] = useState(false)
@@ -46,30 +50,14 @@ function RefreshModel() {
   const handlevariablesfetchfybrand = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-
-        const config = {
-          method: "get",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_brand_fy`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-
-        if (getResponse.data !== "Invalid User!") {
-          setbrandoptions(
-            getResponse.data.brands?.filter(it => !ExceptionVariables?.brandoptionshide2?.includes(it?.brand))?.sort((a, b) => a.brand.localeCompare(b.brand))?.map((it) => {
-              return { value: it.brand, label: it.brand };
-            })
-          );
-
-        }
+        await dispatch(loadBrandFy()).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/dashboard/refreshmodel");
@@ -247,7 +235,7 @@ function RefreshModel() {
       handleErrorResponse(err);
 
       if (displaynames?.brand) {
-        setselectedbrand(displaynames.brand || brandoptions[0].brand);
+        setselectedbrand(displaynames.brand || brandoptions[0]?.value);
       }
     } finally {
       setloaderrefresh(false);

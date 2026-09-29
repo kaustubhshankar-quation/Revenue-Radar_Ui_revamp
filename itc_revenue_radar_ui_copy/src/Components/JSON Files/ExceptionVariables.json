@@ -228,23 +228,6 @@
             "type": "Aggregated and Totals"
         }
     ],
-    "additionstogetvariablesapiatta": [
-        {
-            "attribute_name": "TV_aggregated (Stacked)",
-            "units": "GRP",
-            "type": "Aggregated and Totals"
-        },
-        {
-            "attribute_name": "TP_aggregated (Stacked)",
-            "units": "INR",
-            "type": "Aggregated and Totals"
-        },
-        {
-            "attribute_name": "CP_aggregated (Stacked)",
-            "units": "INR",
-            "type": "Aggregated and Totals"
-        }
-    ],
     "tv_Aggregated_Variables_grp": [
         "TV_AFA_GOAT_PROMO",
         "TV_BE_A_STAR_SOCIAL_MEDIA",
@@ -338,20 +321,6 @@
         "TV_YUMITOS_OS_GRP",
         "TV_YUMITOS_PC_COST",
         "TV_YUMITOS_PC_GRP"
-    ],
-    "tv_Aggregated_Variables_grp_atta": [
-        "Aashirvaad MP Atta Advantage",
-        "Aashirvaad 4 step advantage",
-        "Aashirvaad MP Atta Tug Of War",
-        "Aashirvaad MP Swaad and Sehat",
-        "Aashirvaad MP Tarun's Tiffin",
-        "Aashirvaad Multigrain Hua Kya",
-        "Aashirvaad Select Gehoon Ka Sartaj",
-        "Aashirvaad Sudh Chakki Eta Amar Maa",
-        "Aashirvaad Sudh Chakki Grocery List",
-        "Aashirvaad Zyada Ka Vaada",
-        "Aashirvaad Multigrain Digital Campaign",
-        "Aashirvaad Multigrain Hua Kya"
     ],
     "tv_Aggregated_Variables_inr": [
         "TV_Spends_AFA_GOAT_PROMO",
@@ -455,13 +424,6 @@
         "CP_ACTUAL_PROMO",
         "CP_REGULAR"
     ],
-    "cp_Aggregated_Variables_inr_atta": [
-        "cost_salt_free",
-        "cost_spices_free",
-        "cost_in_pack__atta_promo",
-        "cp_cp",
-        "cost_free_pack__atta_promo"
-    ],
     "tp_Aggregated_Variables_inr": [
         "TRADE_RETAIL",
         "TRADE_WHOLESALE",
@@ -484,10 +446,5 @@
         "trade_wholesale",
         "base_price",
         "base_price_n_atta_price_diff"
-    ],
-    "oneRowAtta": [
-        "wheat_atta_price",
-        "branded_by_unbranded_ratio",
-        "avg_cons"
     ]
 }

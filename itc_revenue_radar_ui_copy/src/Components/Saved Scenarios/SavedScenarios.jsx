@@ -7,11 +7,12 @@ import unMaskedBrandOption from '../JSON Files/MaskedBrandOption.json'
 import Loader from "react-js-loader";
 import { useOutletContext } from "react-router-dom";
 import Select, { components } from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserService from "../../services/UserService";
 import getNotification from "../../Redux/Action/action";
 import axios from "axios";
 import { notifyRequestError, requireLogin, defaultJsonHeaders, formatPlotMonthYear, getCurrentFormattedTime } from "../HelperFunction/helperFunction";
+import { loadBrandFy, loadMarkets } from "../../Redux/session/sessionSlice";
 
 import SingleBarChart4 from "../Simulator/SingleBarChart4";
 import SingleBarChart5 from "../Simulator/SingleBarChart5";
@@ -38,6 +39,9 @@ function SavedScenarios() {
   const fileInputRef = useRef(null);
   const fileInputRef2 = useRef(null);
   const dispatch = useDispatch();
+  const yearoptions = useSelector((state) => state.session?.fyOptions || []);
+  const brandoptions = useSelector((state) => state.session?.brandOptions || []);
+  const marketsByBrand = useSelector((state) => state.session?.marketsByBrand || {});
   const [createfrombaseoruploadfileswitch, setcreatefrombaseoruploadfileswitch] = useState(false)
   const [fulldataset, setfulldataset] = useState({})
   const [fulldataset2, setfulldataset2] = useState({})
@@ -48,10 +52,8 @@ function SavedScenarios() {
   const [endDate, setEndDate] = useState("")
   const [predictedsalesvaluelastfy, setpredictedsalesvaluelastfy] = useState(0)
   const [originaldatasetforcolorcoding, setoriginaldatasetforcolorcoding] = useState([])
-  const [yearoptions, setyearoptions] = useState([])
   const [modifybtn, setmodifybtn] = useState(false)
   const [fromrangeonplots, setfromrangeonplots] = useState("")
-  const [marketoptions, setmarketoptions] = useState([])
   const [uploadfile, setuploadfile] = useState("")
   const [market, setmarket] = useState("");
   const [options1, setoptions1] = useState({})
@@ -71,14 +73,13 @@ function SavedScenarios() {
   const [newscenariofile, setnewscenariofile] = useState("")
   const [isHovered, setIsHovered] = useState(true);
   const [torangeonplots, settorangeonplots] = useState("")
-  const [brandoptions, setbrandoptions] = useState([
-  ]);
   const [displaynames, setdisplaynames] = useState({});
   const [displaynames2, setdisplaynames2] = useState({});
 
   const [edit, setedit] = useState([]);
   const [selectedzone, setselectedzone] = useState("National")
   const [selectedbrand, setselectedbrand] = useState("");
+  const marketoptions = marketsByBrand[selectedbrand] || [];
   const [selectedscenarioname, setselectedscenarioname] = useState("");
   const [selectedscenarioid, setselectedscenarioid] = useState("");
   const [selectedscenarionametimestamp, setselectedscenarionametimestamp] =
@@ -141,46 +142,14 @@ function SavedScenarios() {
   const handlevariablesfetchfybrand = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-
-        const config = {
-          method: "get",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_brand_fy`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          setyearoptions([
-            ...(getResponse.data?.fy || [])]);
-          const filteredBrands = getResponse.data.brands?.filter(it => !ExceptionVariables?.brandoptionshide?.includes(it?.brand))?.sort((a, b) => a.brand.localeCompare(b.brand))
-
-          let finalBrands = filteredBrands
-
-          if (UserService.hasRole(["BBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "BAD BANGLES");
-          }
-          else if (UserService.hasRole(["OODMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["SALES"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["MUMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "MILD URGENCY");
-          }
-          else if (UserService.hasRole(["CBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "CHERRY BRIGHT");
-          }
-          console.log(filteredBrands)
-          setbrandoptions(finalBrands)
-        }
+        await dispatch(loadBrandFy()).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/simulator");
@@ -189,31 +158,14 @@ function SavedScenarios() {
   const handlefetchmarket = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-        sendData.append("brand", selectedbrand)
-        const config = {
-          method: "post",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_markets`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          const markets = getResponse.data.markets;
-          if (UserService.hasRole(["SALES"])) {
-            // let finalmarkets = markets?.filter(it => it.final_market === "EAST");
-            setmarketoptions(markets)
-          }
-          else {
-            setmarketoptions(markets);
-          }
-        }
+        await dispatch(loadMarkets(selectedbrand)).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/simulator");

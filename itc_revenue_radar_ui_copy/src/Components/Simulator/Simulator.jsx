@@ -3,7 +3,7 @@ import ExceptionVariables from '../JSON Files/ExceptionVariables.json'
 import { useState, useEffect, useRef } from "react";
 import Loader from "react-js-loader";
 import Select, { components } from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserService from "../../services/UserService";
 import getNotification from "../../Redux/Action/action";
 import axios from "axios";
@@ -16,6 +16,7 @@ import SingleBarChart3 from "./SingleBarChart3";
 import LineChart1 from "./LineChart1";
 import VariableTableYearly from "./VariableTableYearly";
 import { downloadPdf, uploadPDF, notifyRequestError, requireLogin, defaultJsonHeaders, formatPlotMonthYear, getCurrentFormattedTime, getBrandAbb, isValidScenarioName } from "../HelperFunction/helperFunction";
+import { loadBrandFy, loadMarkets } from "../../Redux/session/sessionSlice";
 import SingleBarChart4 from "./SingleBarChart4";
 import SingleBarChart5 from "../Simulator/SingleBarChart5";
 import SingleBarChart6 from "./SingleBarChart6";
@@ -37,6 +38,9 @@ function Simulator() {
   const fileInputRef = useRef(null);
   const fileInputRef2 = useRef(null);
   const dispatch = useDispatch();
+  const yearoptions = useSelector((state) => state.session?.fyOptions || []);
+  const brandoptions = useSelector((state) => state.session?.brandOptions || []);
+  const marketsByBrand = useSelector((state) => state.session?.marketsByBrand || {});
   const [createfrombaseoruploadfileswitch, setcreatefrombaseoruploadfileswitch] = useState(false)
   const [fulldataset, setfulldataset] = useState([])
   const [fulldataset2, setfulldataset2] = useState([])
@@ -45,10 +49,8 @@ function Simulator() {
   const [isValue, setisValue] = useState(false)
   const [predictedsalesvaluelastfy, setpredictedsalesvaluelastfy] = useState(0)
   const [originaldatasetforcolorcoding, setoriginaldatasetforcolorcoding] = useState([])
-  const [yearoptions, setyearoptions] = useState([])
   const [modifybtn, setmodifybtn] = useState(false)
   const [fromrangeonplots, setfromrangeonplots] = useState("")
-  const [marketoptions, setmarketoptions] = useState([])
   const [uploadfile, setuploadfile] = useState("")
   const [market, setmarket] = useState("");
   const [options1, setoptions1] = useState({})
@@ -75,14 +77,13 @@ function Simulator() {
   const [viewannualoptimizeplan, setviewannualoptimizeplan] = useState(false)
   const [isHovered, setIsHovered] = useState(true);
   const [torangeonplots, settorangeonplots] = useState("")
-  const [brandoptions, setbrandoptions] = useState([
-  ]);
   const [displaynames, setdisplaynames] = useState({});
   const [displaynames2, setdisplaynames2] = useState({});
 
   const [edit, setedit] = useState([]);
   const [selectedzone, setselectedzone] = useState("National")
   const [selectedbrand, setselectedbrand] = useState("");
+  const marketoptions = marketsByBrand[selectedbrand] || [];
   const [selectedscenarioname, setselectedscenarioname] = useState("");
   const [selectedscenarioid, setselectedscenarioid] = useState("");
   const [selectedscenarionametimestamp, setselectedscenarionametimestamp] =
@@ -758,48 +759,14 @@ function Simulator() {
   const handlevariablesfetchfybrand = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-
-        const config = {
-          method: "get",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_brand_fy`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          setyearoptions([
-            ...(getResponse.data?.fy || []), // Use optional chaining to handle undefined/null values safely
-            // Add the new fiscal year
-          ]);
-          const filteredBrands = getResponse.data.brands?.filter(it => !ExceptionVariables?.brandoptionshide?.includes(it?.brand))?.sort((a, b) => a.brand.localeCompare(b.brand))
-
-          let finalBrands = filteredBrands
-
-          if (UserService.hasRole(["BBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "BAD BANGLES");
-          }
-          else if (UserService.hasRole(["OODMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["SALES"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["MUMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "MILD URGENCY");
-          }
-          else if (UserService.hasRole(["CBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "CHERRY BRIGHT");
-          }
-          console.log(filteredBrands)
-          setbrandoptions(finalBrands)
-        }
+        await dispatch(loadBrandFy()).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/simulator");
@@ -808,32 +775,14 @@ function Simulator() {
   const handlefetchmarket = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-        sendData.append("brand", selectedbrand)
-        const config = {
-          method: "post",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_markets`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          const markets = getResponse.data.markets;
-          if (UserService.hasRole(["SALES"])) {
-            // let finalmarkets = markets?.filter(it => it.final_market === "EAST");
-            setmarketoptions(markets)
-          }
-          else {
-            setmarketoptions(markets);
-          }
-        }
-      }
-      catch (err) {
+        await dispatch(loadMarkets(selectedbrand)).unwrap();
+      } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/simulator");

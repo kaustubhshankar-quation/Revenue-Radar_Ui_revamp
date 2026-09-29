@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import QuarterlySalesDashboard from "./SalesCompariosionLineChart";
 import { useDispatch, useSelector } from "react-redux";
-import { loadDashboardData } from "../Global_store/BrandmanagerDashboard/dashboardSlice";
+import { loadDashboardData } from "../../Redux/dashboard/dashboardSlice";
 import { useOutletContext } from "react-router-dom";
 import {
   formatCr,

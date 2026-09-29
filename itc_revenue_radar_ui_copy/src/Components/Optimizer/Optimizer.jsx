@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Loader from "react-js-loader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserService from "../../services/UserService";
 import Select, { components } from "react-select";
 import getNotification from "../../Redux/Action/action";
@@ -30,6 +30,7 @@ import SingleBarChart1op from "./SingleBarChart1op";
 import VariableTableYearly from "../Simulator/VariableTableYearly";
 import maskedBrandOption from '../JSON Files/MaskedBrandOption.json'
 import { downloadPdf, uploadPDF, notifyRequestError, requireLogin, defaultJsonHeaders, formatPlotMonthYear, getCurrentFormattedTime } from "../HelperFunction/helperFunction";
+import { loadBrandFy, loadMarkets } from "../../Redux/session/sessionSlice";
 import { useOutletContext } from "react-router-dom";
 import { toast } from "react-toastify";
 const { REACT_APP_UPLOAD_DATA } = process.env;
@@ -47,6 +48,9 @@ function Optimizer() {
   const [fromrangeonplots, setfromrangeonplots] = useState("")
   const [isValue, setisValue] = useState(false)
   const dispatch = useDispatch();
+  const yearoptions = useSelector((state) => state.session?.fyOptions || []);
+  const brandoptions = useSelector((state) => state.session?.brandOptions || []);
+  const marketsByBrand = useSelector((state) => state.session?.marketsByBrand || {});
   const [distributionvalue, setdistributionvalue] = useState([])
   const [distributionvaluecontri, setdistributionvaluecontri] = useState([])
   const [originaldatasetforcolorcoding, setoriginaldatasetforcolorcoding] = useState([])
@@ -61,8 +65,6 @@ function Optimizer() {
   const [optimizeddatasetincrementroi, setoptimizeddatasetincrementroi] = useState([])
   const [first2chartsdata, setfirst2chartsdata] = useState([])
   const [selectedmonth, setselectedmonth] = useState("")
-  const [yearoptions, setyearoptions] = useState([])
-  const [marketoptions, setmarketoptions] = useState([])
   const [modifybtn, setmodifybtn] = useState(false)
   const [scenariooptions, setscenariooptions] = useState([]);
   const [salestabledata, setsalestabledata] = useState([]);
@@ -78,7 +80,6 @@ function Optimizer() {
   const [viewscenariodatatable2, setviewscenariodatatable2] = useState(false)
   const [viewscenariodatatable, setviewscenariodatatable] = useState(false)
   const [newscenariofile, setnewscenariofile] = useState("")
-  const [brandoptions, setbrandoptions] = useState([]);
   const [fulldataset2, setfulldataset2] = useState([]);
   const [upperboundlowerboundscreen, setupperboundlowerboundscreen] = useState(false)
   const [totalBudget, settotalBudget] = useState(0)
@@ -88,6 +89,7 @@ function Optimizer() {
   const [edit2, setedit2] = useState([]);
   const [selectedzone, setselectedzone] = useState("National")
   const [selectedbrand, setselectedbrand] = useState("");
+  const marketoptions = marketsByBrand[selectedbrand] || [];
   const [selectedscenarioname, setselectedscenarioname] = useState("");
   const [selectedscenarioid, setselectedscenarioid] = useState("");
   const [selectedscenarionametimestamp, setselectedscenarionametimestamp] = useState("");
@@ -365,46 +367,14 @@ function Optimizer() {
   const handlevariablesfetchfybrand = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-
-        const config = {
-          method: "get",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_brand_fy`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          setyearoptions([
-            ...(getResponse.data?.fy || [])]);
-          const filteredBrands = getResponse.data.brands?.filter(it => !ExceptionVariables?.brandoptionshide?.includes(it?.brand))?.sort((a, b) => a.brand.localeCompare(b.brand))
-
-          let finalBrands = filteredBrands
-
-          if (UserService.hasRole(["BBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "BAD BANGLES");
-          }
-          else if (UserService.hasRole(["OODMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["SALES"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "OODLES");
-          }
-          else if (UserService.hasRole(["MUMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "MILD URGENCY");
-          }
-          else if (UserService.hasRole(["CBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it?.brand === "CHERRY BRIGHT");
-          }
-          console.log(filteredBrands)
-          setbrandoptions(finalBrands)
-        }
+        await dispatch(loadBrandFy()).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/optimizer");
@@ -413,31 +383,14 @@ function Optimizer() {
   const handlefetchmarket = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-        sendData.append("brand", selectedbrand)
-        const config = {
-          method: "post",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_markets`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        if (getResponse.data !== "Invalid User!") {
-          const markets = getResponse.data.markets;
-          if (UserService.hasRole(["SALES"])) {
-            // let finalmarkets = markets?.filter(it => it.final_market === "EAST");
-            setmarketoptions(markets)
-          }
-          else {
-            setmarketoptions(markets);
-          }
-        }
+        await dispatch(loadMarkets(selectedbrand)).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/optimizer");

@@ -126,6 +126,32 @@ export function resolveDashboardBrandPayload(fy = "2025-26") {
   return { brand: "MILD URGENCY", fy };
 }
 
+/**
+ * Shared brand allow-list by role (tool pages + sessionSlice).
+ * Expects brand objects with a `brand` field (get_brand_fy shape).
+ * @param {Array<{brand: string}>} brands
+ * @param {string[]} [hideList] brands to exclude (e.g. ExceptionVariables.brandoptionshide)
+ */
+export function filterBrandsByRole(brands = [], hideList = []) {
+  const filtered = brands
+    ?.filter((it) => !hideList?.includes(it?.brand))
+    ?.sort((a, b) => a.brand.localeCompare(b.brand));
+
+  if (UserService.hasRole(["BBMNGR"])) {
+    return filtered?.filter((it) => it?.brand === "BAD BANGLES");
+  }
+  if (UserService.hasRole(["OODMNGR"]) || UserService.hasRole(["SALES"])) {
+    return filtered?.filter((it) => it?.brand === "OODLES");
+  }
+  if (UserService.hasRole(["MUMNGR"])) {
+    return filtered?.filter((it) => it?.brand === "MILD URGENCY");
+  }
+  if (UserService.hasRole(["CBMNGR"])) {
+    return filtered?.filter((it) => it?.brand === "CHERRY BRIGHT");
+  }
+  return filtered;
+}
+
 /** Plot range label: "04-2025" → "Apr 2025" (Simulator / Optimizer / Saved Scenarios). */
 export function formatPlotMonthYear(dateString) {
   if (!dateString) return "";

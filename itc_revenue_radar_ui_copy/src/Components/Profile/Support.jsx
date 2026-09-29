@@ -1,13 +1,11 @@
 import React from "react";
 import FooterPages from "../Footer/FooterPages";
 import Navbar3 from "../Navbars/Navbar3";
-import SubNavbar from "../Navbars/SubNavbar";
 
 function Support() {
   return (
     <>
       <Navbar3 />
-      <SubNavbar />
       <div className="bgpages">
         <div className=" container py-2">
           <div className="rr-card rr-card-header">

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadCMODashboardData } from "../Global_store/CMODashboard/cmoDashboardSlice";
+import { loadCMODashboardData } from "../../Redux/cmoDashboard/cmoDashboardSlice";
 import UserService from "../../services/UserService";
 import { useOutletContext } from "react-router-dom";
 import Chart from "react-apexcharts";

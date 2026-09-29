@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import Select, { components } from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserService from "../../services/UserService";
 import getNotification from "../../Redux/Action/action";
 import axios from "axios";
@@ -20,6 +20,7 @@ import SingleBarChart8 from "../Simulator/SingleBarChart8";
 import maskedBrandOption from '../JSON Files/MaskedBrandOption.json'
 import LoaderCustom from "../LoaderCustom";
 import { notifyRequestError, requireLogin, defaultJsonHeaders, formatPlotMonthYear } from "../HelperFunction/helperFunction";
+import { loadBrandFy, loadMarkets } from "../../Redux/session/sessionSlice";
 
 const { REACT_APP_UPLOAD_DATA } = process.env;
 const XLSX = require("xlsx");
@@ -30,6 +31,8 @@ function ModelPerformance() {
   const selectAllOption = { label: "Select All", value: "selectAll" };
   const [isValue, setisValue] = useState(false)
   const dispatch = useDispatch();
+  const sessionBrandOptions = useSelector((state) => state.session?.brandOptions || []);
+  const marketsByBrand = useSelector((state) => state.session?.marketsByBrand || {});
   const [tablescreen, settablescreen] = useState(false)
   const [loader, setloader] = useState(false);
   const [modelcallibrationoptions, setmodelcallibrationoptions] = useState([
@@ -44,14 +47,29 @@ function ModelPerformance() {
   const [endDate, setEndDate] = useState("");
   const [mapetable, setmapetable] = useState([]);
   const [checkedbox, setcheckedbox] = useState([])
-  const [brandoptions, setbrandoptions] = useState([]);
+  const brandoptions = sessionBrandOptions?.map((it) => ({
+    value: it.brand,
+    label: maskedBrandOption.maskedBrandOption[it.brand.trim().toUpperCase()]
+  })) || [];
   const [displaynames, setdisplaynames] = useState({});
-  const [marketoptions, setmarketoptions] = useState([])
+  const [selectedzone, setselectedzone] = useState("National")
+  const [selectedbrand, setselectedbrand] = useState("");
+  const rawMarkets = marketsByBrand[selectedbrand] || [];
+  const marketoptions = UserService.hasRole(["SALES"])
+    ? rawMarkets.map((it) => ({
+        value: it.final_market,
+        label: it.final_market,
+      }))
+    : [
+        { value: "selectAll", label: "Select All" },
+        ...rawMarkets.map((it) => ({
+          value: it.final_market,
+          label: it.final_market,
+        })),
+      ];
   const [market, setmarket] = useState([]);
 
   const [modifybtn, setmodifybtn] = useState(false)
-  const [selectedzone, setselectedzone] = useState("National")
-  const [selectedbrand, setselectedbrand] = useState("");
   const [selectedscenarioname, setselectedscenarioname] = useState("");
   const [selectedscenarioid, setselectedscenarioid] = useState("");
   const [selectedscenarionametimestamp, setselectedscenarionametimestamp] =
@@ -95,52 +113,14 @@ function ModelPerformance() {
   const handlevariablesfetchfybrand = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-
-        const config = {
-          method: "get",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_brand_fy`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-
-        if (getResponse.data !== "Invalid User!") {
-          const filteredBrands = getResponse.data.brands
-            ?.filter(it => !ExceptionVariables?.brandoptionshide?.includes(it?.brand))
-            ?.map(it => ({
-              value: it.brand,
-              label: maskedBrandOption.maskedBrandOption[it.brand.trim().toUpperCase()]
-            }));
-
-          let finalBrands = filteredBrands;
-
-          // Role-based filtering
-          if (UserService.hasRole(["BBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "BAD BANGLES");
-          }
-          else if (UserService.hasRole(["OODMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "OODLES");
-          }
-          else if (UserService.hasRole(["SALES"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "OODLES");
-          }
-          else if (UserService.hasRole(["MUMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "MILD URGENCY");
-          }
-          else if (UserService.hasRole(["CBMNGR"])) {
-            finalBrands = filteredBrands?.filter(it => it.value === "CHERRY BRIGHT");
-          }
-
-          // Set once
-          setbrandoptions(finalBrands);
-        }
+        await dispatch(loadBrandFy()).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/dashboard/modelperformance");
@@ -166,49 +146,14 @@ function ModelPerformance() {
   const handlefetchmarket = async () => {
     if (UserService.isLoggedIn()) {
       try {
-        const FormData = require("form-data");
-        const sendData = new FormData();
-        sendData.append("brand", selectedbrand)
-        const config = {
-          method: "post",
-          url: `${REACT_APP_UPLOAD_DATA}/app/get_markets`,
-          headers: {
-            ...defaultJsonHeaders,
-          },
-          data: sendData,
-        };
-        const getResponse = await axios(config);
-        // console.log(getResponse)
-        if (getResponse.data !== "Invalid User!") {
-          const markets = getResponse.data.markets;
-          if (UserService.hasRole(["SALES"])) {
-            // let finalmarkets = markets?.filter(it => it.final_market === "EAST");
-            setmarketoptions(
-              [
-                // Add Select All option
-                ...markets?.map((it) => ({
-                  value: it.final_market,
-                  label: it.final_market,
-                })),
-              ]
-            )
-          }
-          else {
-            setmarketoptions(
-              [
-                { value: "selectAll", label: "Select All" }, // Add Select All option
-                ...markets?.map((it) => ({
-                  value: it.final_market,
-                  label: it.final_market,
-                })),
-              ]
-            );
-          }
-
-        }
+        await dispatch(loadMarkets(selectedbrand)).unwrap();
       } catch (err) {
         console.log("Server Error", err);
-        notifyRequestError(dispatch, err);
+        if (err?.response) {
+          notifyRequestError(dispatch, err);
+        } else if (err?.message) {
+          dispatch(getNotification({ message: err.message, type: "danger" }));
+        }
       }
     } else {
       requireLogin("/dashboard/modelperformance");
