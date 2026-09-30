@@ -17,6 +17,7 @@ function VariableTable({ sampledataset, changesampledataset, originalset, change
   }, [sampledataset]);
   // sampledataset?.sort((a, b) => a.variable_type.localeCompare(b.variable_type));
   const [viewzerotvcampaigns, setviewzerotvcampaigns] = useState(false)
+  const [openMix, setOpenMix] = useState("media")
 
   const zerotvvariables = sampledataset.filter(item => item.attribute_name.startsWith("TV") && item.subtotal === 0)
 
@@ -518,904 +519,336 @@ function VariableTable({ sampledataset, changesampledataset, originalset, change
     }
     changesampledataset(updatedDataset);
   };
+
+  const formatDisplayValue = (val) => {
+    if (Number.isInteger(val)) return Number(val).toLocaleString("en-IN");
+    if (!isNaN(val)) {
+      return Number(val) > 10000
+        ? parseFloat(Number(val).toFixed(0)).toLocaleString("en-IN")
+        : parseFloat(Number(val).toFixed(2)).toLocaleString("en-IN");
+    }
+    return val;
+  };
+
+  const getPeriodLabel = (it) =>
+    it?.month_year
+      ? it.month_year
+      : it?.half_year
+        ? it.half_year
+        : it?.quarter
+          ? `Q${it.quarter}`
+          : it?.fy
+            ? it.fy
+            : "Period";
+
+  const sortMonthData = (monthData = []) =>
+    [...monthData].sort((a, b) => {
+      if (a.month_year && b.month_year) return a.month_year > b.month_year ? 1 : -1;
+      if (a.quarter && b.quarter) return a.quarter > b.quarter ? 1 : -1;
+      return a.half_year > b.half_year ? 1 : -1;
+    });
+
+  const getAttributeLabel = (item) =>
+    Object.keys(ExceptionVariables?.spellingChanges || {}).some((key) => key === item.attribute_name)
+      ? ExceptionVariables.spellingChanges[item.attribute_name]
+      : item.attribute_name;
+
+  const getSliderOrigin = (variableIndex, valueIndex) => {
+    const orig =
+      Number(originaldatasetforcolorcoding?.[variableIndex]?.month_data?.[valueIndex]?.attribute_value) || 0;
+    return Math.max(Math.abs(orig), 1);
+  };
+
+  // Straight track from 0 to 2× the original. The original sits halfway.
+  // Amounts typed above that are kept; the thumb rests at the right end.
+  const getSliderMax = (origin) => origin * 2;
+
+  const getSliderStep = (max) => {
+    if (max >= 10000) return 1;
+    if (max >= 100) return 0.1;
+    return 0.01;
+  };
+
+  const beginEdit = (variableIndex) => {
+    changesampledataset(originalset);
+    const arr = [];
+    arr[variableIndex] = true;
+    setedit(arr);
+  };
+
+  const resetTypeRows = (typeName, zeroTvOnly = null) => {
+    const updatedDataset = JSON.parse(JSON.stringify(sampledataset));
+    sampledataset.forEach((item, idx) => {
+      if (item?.type !== typeName) return;
+      const isZeroTv = zerotvvariables.some((v) => v.attribute_name === item.attribute_name);
+      if (zeroTvOnly === true && !isZeroTv) return;
+      if (zeroTvOnly === false && isZeroTv) return;
+      if (!originalset?.[idx]) return;
+      updatedDataset[idx].month_data = originalset[idx].month_data.map((it) => ({ ...it }));
+      updatedDataset[idx].subtotal = originalset[idx].subtotal;
+      updatedDataset[idx].frozen = 0;
+    });
+    changesampledataset(updatedDataset);
+    setedit([]);
+  };
+
+  const getTypeRows = (typeName, zeroTvOnly = null) =>
+    sampledataset
+      ?.map((item, variableIndex) => ({ item, variableIndex }))
+      .filter(({ item }) => {
+        if (item?.type !== typeName) return false;
+        if (hidingvariablelist.some((variable) => variable === item.attribute_name)) return false;
+        const isZeroTv = zerotvvariables.some((v) => v.attribute_name === item.attribute_name);
+        if (zeroTvOnly === true && !isZeroTv) return false;
+        if (zeroTvOnly === false && isZeroTv) return false;
+        return true;
+      }) || [];
+
+  const getTypeTotal = (typeName, zeroTvOnly = null) =>
+    getTypeRows(typeName, zeroTvOnly).reduce(
+      (acc, { item }) => acc + (parseFloat(item.subtotal) || 0),
+      0
+    );
+
+  const renderMixRows = ({ typeName, zeroTvOnly = null, showCoreType = false }) => {
+    const rows = getTypeRows(typeName, zeroTvOnly);
+
+    if (!rows?.length) {
+      return <div className="rr-mix-empty">No drivers in this block.</div>;
+    }
+
+    return rows.map(({ item, variableIndex }) => {
+      const isEditing = !!edit[variableIndex];
+      const periods = sortMonthData(item?.month_data);
+
+      return (
+        <div
+          className={`rr-mix-row ${isEditing ? "is-editing" : ""} ${item.to_show_in === 1 ? "is-changed" : ""}`}
+          key={`${typeName}-${variableIndex}`}
+        >
+          <div className="rr-mix-row-top">
+            <div className="rr-mix-row-title">
+              <span className={`rr-mix-name ${item.to_show_in === 1 ? "is-flagged" : ""}`}>
+                {getAttributeLabel(item)}
+              </span>
+              <span className={`rr-mix-badge rr-mix-badge--${String(typeName).toLowerCase()}`}>
+                {showCoreType && item.variable_type ? item.variable_type : item?.units || typeName}
+              </span>
+            </div>
+
+            <div className="rr-mix-row-actions">
+              <span className="rr-mix-row-total">{formatDisplayValue(item.subtotal)}</span>
+              {isEditing ? (
+                <div className="rr-mix-action-group">
+                  <button
+                    type="button"
+                    className="rr-mix-icon-btn is-success"
+                    title="Apply"
+                    onClick={() => updatedatasetdecimal(variableIndex)}
+                  >
+                    <i className="fa fa-check"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className="rr-mix-icon-btn is-danger"
+                    title="Clear"
+                    onClick={() => clearAll(variableIndex)}
+                  >
+                    <i className="fas fa-trash-alt"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className="rr-mix-icon-btn"
+                    title="Cancel"
+                    onClick={() => {
+                      setedit([]);
+                      handlecancel(variableIndex);
+                    }}
+                  >
+                    <i className="fa fa-arrow-circle-left"></i>
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  className="rr-mix-icon-btn"
+                  title="Edit"
+                  onClick={() => beginEdit(variableIndex)}
+                >
+                  <i className="fas fa-edit"></i>
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="rr-mix-periods">
+            {periods.map((it) => {
+              const valueIndex = item.month_data.indexOf(it);
+              const isBeforeUnlockMonth = it?.month_year <= MonthBeforeUnlockMonth;
+              const disabled = !isEditing || isBeforeUnlockMonth || !!it?.frozen;
+              const numericValue = Number(it.attribute_value) || 0;
+              const origin = getSliderOrigin(variableIndex, valueIndex);
+              const max = getSliderMax(origin);
+              const step = getSliderStep(max);
+              const clamped = Math.min(Math.max(numericValue, 0), max);
+              const pct = max > 0 ? (clamped / max) * 100 : 0;
+
+              return (
+                <div className="rr-mix-period" key={`${variableIndex}-${valueIndex}`}>
+                  <div className="rr-mix-period-meta">
+                    <span className="rr-mix-period-label">{getPeriodLabel(it)}</span>
+                    <div className="rr-mix-period-value-wrap">
+                      {isEditing ? (
+                        <input
+                          className={`rr-input rr-mix-number ${it?.frozen ? "noborder" : ""}`}
+                          value={it.attribute_value}
+                          disabled={isBeforeUnlockMonth || !!it?.frozen}
+                          onChange={(e) => {
+                            if (!isBeforeUnlockMonth) {
+                              changeelementsdecimal(variableIndex, valueIndex, e);
+                            }
+                          }}
+                          onFocus={() => {
+                            inputRefs.current.activeIndex = `${variableIndex}-${valueIndex}`;
+                          }}
+                          ref={(el) => {
+                            inputRefs.current[`${variableIndex}-${valueIndex}`] = el;
+                          }}
+                        />
+                      ) : (
+                        <span className="rr-mix-period-value">{formatDisplayValue(it.attribute_value)}</span>
+                      )}
+                      {isEditing && (
+                        <button
+                          type="button"
+                          className="rr-mix-icon-btn is-tiny"
+                          disabled={isBeforeUnlockMonth}
+                          onClick={() => {
+                            if (!isBeforeUnlockMonth) togglelock(variableIndex, valueIndex);
+                          }}
+                        >
+                          {it?.frozen === 0 && !isBeforeUnlockMonth ? (
+                            <i className="fa fa-unlock"></i>
+                          ) : (
+                            <i className="fa fa-lock"></i>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  <input
+                    type="range"
+                    className="rr-mix-slider"
+                    min={0}
+                    max={max}
+                    step={step}
+                    value={clamped}
+                    disabled={disabled}
+                    style={{ "--rr-mix-fill": `${pct}%` }}
+                    onChange={(e) => {
+                      if (disabled) return;
+                      changeelementsdecimal(variableIndex, valueIndex, e);
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    });
+  };
+
+  const renderMixBlock = ({
+    typeName,
+    zeroTvOnly = null,
+    showCoreType = false,
+    showZeroTvToggle = false,
+    tone = "media",
+  }) => {
+    const typeTotal = getTypeTotal(typeName, zeroTvOnly);
+    const isOpen = openMix === tone;
+    const panelId = `rr-mix-panel-${tone}`;
+
+    return (
+      <section className={`rr-mix-block rr-mix-block--${tone}${isOpen ? " is-open" : ""}`}>
+        <button
+          type="button"
+          className="rr-mix-header"
+          aria-expanded={isOpen}
+          aria-controls={panelId}
+          onClick={() => setOpenMix(isOpen ? "" : tone)}
+        >
+          <div className="rr-mix-header-text">
+            <h3 className="rr-mix-title">
+              {String(typeName || "").toLowerCase().replace(/^\w/, (c) => c.toUpperCase())}
+            </h3>
+          </div>
+          <span className="rr-mix-header-side">
+            <span className="rr-mix-total-pill">{formatDisplayValue(typeTotal)}</span>
+            <span className="rr-mix-chevron" aria-hidden="true" />
+          </span>
+        </button>
+
+        {isOpen && (
+          <div id={panelId} className="rr-mix-panel">
+            <div className="rr-mix-list">{renderMixRows({ typeName, zeroTvOnly, showCoreType })}</div>
+
+            <div className="rr-mix-footer">
+              <span className="rr-mix-footnote">*Edit → slide periods → Apply</span>
+              <button
+                type="button"
+                className="rr-mix-reset"
+                onClick={() => resetTypeRows(typeName, zeroTvOnly)}
+              >
+                Reset
+              </button>
+            </div>
+
+            {showZeroTvToggle && zerotvvariables?.length > 0 && (
+              <div className="rr-mix-zero-tv">
+                <button
+                  className="rr-link-btn"
+                  type="button"
+                  onClick={() => setviewzerotvcampaigns(!viewzerotvcampaigns)}
+                >
+                  {viewzerotvcampaigns ? "Hide Old TV Campaigns" : "View Old TV Campaigns"}
+                </button>
+                {viewzerotvcampaigns && (
+                  <div className="rr-mix-list rr-mix-list--nested">
+                    {renderMixRows({ typeName, zeroTvOnly: true, showCoreType })}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+    );
+  };
+
   return (
     <>
       <div className="rr-variable-page">
         <div className="rr-variable-card">
-          <div className="accordion rr-accordion" id="accordionExample">
-            {/* Media Accordion */}
-            <div className="accordion-item rr-accordion-item">
-              <h2 className="accordion-header">
-                <button
-                  className="accordion-button rr-accordion-btn"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
-                >
-                  {ExceptionVariables?.variabletypes[0]}
-                </button>
-              </h2>
-
-              <div
-                id="collapseOne"
-                className="accordion-collapse collapse show"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body rr-accordion-body">
-                  <div className="rr-table-wrap">
-                    <table className="table rr-variable-table">
-                      <thead>
-                        <tr>
-                          <th>Attribute</th>
-
-                          {sampledataset[0]?.month_data
-                            ?.sort((a, b) => {
-                              if (a.month_year && b.month_year) {
-                                return a.month_year > b.month_year ? 1 : -1;
-                              } else if (a.quarter && b.quarter) {
-                                return a.quarter > b.quarter ? 1 : -1;
-                              } else {
-                                return a.half_year > b.half_year ? 1 : -1;
-                              }
-                            })
-                            .map((it, idx) => (
-                              <th key={idx} className="text-end">
-                                {it?.month_year
-                                  ? it?.month_year
-                                  : it?.half_year
-                                    ? it?.half_year
-                                    : `Q${it?.quarter}`}
-                              </th>
-                            ))}
-
-                          <th className="text-end">Total</th>
-                          <th className="text-center">Action</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {sampledataset?.map((item, variableIndex) => {
-                          return (
-                            item?.type === ExceptionVariables?.variabletypes[0] &&
-                            !hidingvariablelist.some(
-                              (variable) => variable === item.attribute_name
-                            ) &&
-                            !zerotvvariables.some(
-                              (variable) => variable.attribute_name === item.attribute_name
-                            ) && (
-                              <tr key={`outside${variableIndex}`}>
-                                <td className={item.to_show_in === 1 ? "text-danger" : ""}>
-                                  <b>
-                                    {Object.keys(ExceptionVariables?.spellingChanges).some(
-                                      (key) => key === item.attribute_name
-                                    )
-                                      ? ExceptionVariables?.spellingChanges[item.attribute_name]
-                                      : item.attribute_name}
-                                  </b>{" "}
-                                  ({item?.units})
-                                </td>
-
-                                {item?.month_data
-                                  ?.sort((a, b) => {
-                                    if (a.month_year && b.month_year) {
-                                      return a.month_year > b.month_year ? 1 : -1;
-                                    } else if (a.quarter && b.quarter) {
-                                      return a.quarter > b.quarter ? 1 : -1;
-                                    } else {
-                                      return a.half_year > b.half_year ? 1 : -1;
-                                    }
-                                  })
-                                  .map((it, valueIndex) => {
-                                    const isBeforeUnlockMonth =
-                                      it?.month_year <= MonthBeforeUnlockMonth;
-
-                                    return (
-                                      <td className="text-end" key={valueIndex}>
-                                        {edit[variableIndex] ? (
-                                          <div className="rr-edit-cell">
-                                            <input
-                                              className={`rr-input rr-input-cell ${it?.frozen ? "noborder" : ""
-                                                }`}
-                                              value={it.attribute_value}
-                                              disabled={isBeforeUnlockMonth || it?.frozen}
-                                              onChange={(e) => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  changeelementsdecimal(
-                                                    variableIndex,
-                                                    valueIndex,
-                                                    e
-                                                  );
-                                                }
-                                              }}
-                                              onFocus={() =>
-                                                (inputRefs.current.activeIndex = `${variableIndex}-${valueIndex}`)
-                                              }
-                                              ref={(el) =>
-                                              (inputRefs.current[
-                                                `${variableIndex}-${valueIndex}`
-                                              ] = el)
-                                              }
-                                            />
-
-                                            <button
-                                              className="btn btn-sm rr-icon-btn"
-                                              onClick={() => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  togglelock(variableIndex, valueIndex);
-                                                }
-                                              }}
-                                              disabled={isBeforeUnlockMonth}
-                                            >
-                                              {it?.frozen === 0 && !isBeforeUnlockMonth ? (
-                                                <i className="fa fa-unlock text-warning"></i>
-                                              ) : (
-                                                <i className="fa fa-lock text-secondary"></i>
-                                              )}
-                                            </button>
-                                          </div>
-                                        ) : Number.isInteger(it.attribute_value) ? (
-                                          Number(it.attribute_value).toLocaleString("en-IN")
-                                        ) : !isNaN(it.attribute_value) ? (
-                                          it.attribute_value > 10000
-                                            ? parseFloat(
-                                              Number(it.attribute_value).toFixed(0)
-                                            ).toLocaleString("en-IN")
-                                            : parseFloat(
-                                              Number(it.attribute_value).toFixed(2)
-                                            ).toLocaleString("en-IN")
-                                        ) : (
-                                          it.attribute_value
-                                        )}
-                                      </td>
-                                    );
-                                  })}
-
-                                <td className="text-end">
-                                  {edit[variableIndex] ? (
-                                    <div>
-                                      <input
-                                        className={`rr-input rr-input-cell ${item.frozen ? "noborder ml-1" : ""
-                                          }`}
-                                        disabled
-                                        value={item.subtotal}
-                                        onChange={(e) => {
-                                          changesubtotaldecimal(e, variableIndex);
-                                        }}
-                                      />
-                                    </div>
-                                  ) : Number.isInteger(item.subtotal) ? (
-                                    Number(item.subtotal).toLocaleString("en-IN")
-                                  ) : !isNaN(item.subtotal) ? (
-                                    item.subtotal > 10000
-                                      ? parseFloat(
-                                        Number(item.subtotal).toFixed(0)
-                                      ).toLocaleString("en-IN")
-                                      : parseFloat(
-                                        Number(item.subtotal).toFixed(2)
-                                      ).toLocaleString("en-IN")
-                                  ) : (
-                                    item.subtotal
-                                  )}
-                                </td>
-
-                                <td className="text-center">
-                                  {edit[variableIndex] ? (
-                                    <div className="d-flex justify-content-center gap-1 flex-wrap">
-                                      <button
-                                        className="btn btn-sm rr-success-icon"
-                                        onClick={() => {
-                                          updatedatasetdecimal(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-check"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-danger-icon"
-                                        onClick={() => {
-                                          clearAll(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fas fa-trash-alt"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-neutral-icon"
-                                        onClick={() => {
-                                          let arr = [];
-                                          setedit(arr);
-                                          handlecancel(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-arrow-circle-left"></i>
-                                      </button>
-                                    </div>
-                                  ) : (
-                                    <button
-                                      className="rr-btn rr-btn-secondary rr-btn-icon"
-                                      onClick={() => {
-                                        changesampledataset(originalset);
-                                        let arr = [];
-                                        arr[variableIndex] = true;
-                                        setedit(arr);
-                                      }}
-                                    >
-                                      <i className="fas fa-edit"></i>
-                                    </button>
-                                  )}
-                                </td>
-                              </tr>
-                            )
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {zerotvvariables?.length > 0 && (
-                    <div className="mt-3">
-                      <button
-                        className="rr-link-btn"
-                        type="button"
-                        onClick={() => setviewzerotvcampaigns(!viewzerotvcampaigns)}
-                      >
-                        {viewzerotvcampaigns
-                          ? "Hide Old Tv Campaigns"
-                          : "View Old Tv Campaigns"}
-                      </button>
-                    </div>
-                  )}
-
-                  {viewzerotvcampaigns && (
-                    <div className="rr-table-wrap mt-3">
-                      <table className="table rr-variable-table">
-                        <thead>
-                          <tr>
-                            <th>Attribute</th>
-                            {sampledataset[0]?.month_data
-                              ?.map((it, idx) => (
-                                <th key={idx} className="text-end">
-                                  {it?.month_year
-                                    ? it?.month_year
-                                    : it?.half_year
-                                      ? it?.half_year
-                                      : `Q${it?.quarter}`}
-                                </th>
-                              ))}
-                            <th className="text-end">Total</th>
-                            <th className="text-center">Action</th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          {sampledataset?.map((item, variableIndex) => {
-                            return (
-                              item?.type === ExceptionVariables?.variabletypes[0] &&
-                              !hidingvariablelist.some(
-                                (variable) => variable === item.attribute_name
-                              ) &&
-                              zerotvvariables.some(
-                                (variable) => variable.attribute_name === item.attribute_name
-                              ) && (
-                                <tr key={`zerotv-${variableIndex}`}>
-                                  <td
-                                    className={item.to_show_in === 1 ? "text-danger" : ""}
-                                  >
-                                    <b>
-                                      {Object.keys(
-                                        ExceptionVariables?.spellingChanges
-                                      ).some((key) => key === item.attribute_name)
-                                        ? ExceptionVariables?.spellingChanges[
-                                        item.attribute_name
-                                        ]
-                                        : item.attribute_name}
-                                    </b>{" "}
-                                    ({item?.units})
-                                  </td>
-
-                                  {item?.month_data?.map((it, valueIndex) => {
-                                    const isBeforeUnlockMonth =
-                                      it?.month_year <= MonthBeforeUnlockMonth;
-
-                                    return (
-                                      <td className="text-end" key={valueIndex}>
-                                        {edit[variableIndex] ? (
-                                          <div className="rr-edit-cell">
-                                            <input
-                                              className={`rr-input rr-input-cell ${it?.frozen ? "noborder" : ""
-                                                }`}
-                                              value={it.attribute_value}
-                                              disabled={isBeforeUnlockMonth || it?.frozen}
-                                              onChange={(e) => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  changeelementsdecimal(
-                                                    variableIndex,
-                                                    valueIndex,
-                                                    e
-                                                  );
-                                                }
-                                              }}
-                                              onFocus={() =>
-                                                (inputRefs.current.activeIndex = `${variableIndex}-${valueIndex}`)
-                                              }
-                                              ref={(el) =>
-                                              (inputRefs.current[
-                                                `${variableIndex}-${valueIndex}`
-                                              ] = el)
-                                              }
-                                            />
-                                            <button
-                                              className="btn btn-sm rr-icon-btn"
-                                              onClick={() => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  togglelock(variableIndex, valueIndex);
-                                                }
-                                              }}
-                                              disabled={isBeforeUnlockMonth}
-                                            >
-                                              {it?.frozen === 0 && !isBeforeUnlockMonth ? (
-                                                <i className="fa fa-unlock text-warning"></i>
-                                              ) : (
-                                                <i className="fa fa-lock text-secondary"></i>
-                                              )}
-                                            </button>
-                                          </div>
-                                        ) : Number.isInteger(it.attribute_value) ? (
-                                          Number(it.attribute_value).toLocaleString("en-IN")
-                                        ) : !isNaN(it.attribute_value) ? (
-                                          it.attribute_value > 10000
-                                            ? parseFloat(
-                                              Number(it.attribute_value).toFixed(0)
-                                            ).toLocaleString("en-IN")
-                                            : parseFloat(
-                                              Number(it.attribute_value).toFixed(2)
-                                            ).toLocaleString("en-IN")
-                                        ) : (
-                                          it.attribute_value
-                                        )}
-                                      </td>
-                                    );
-                                  })}
-
-                                  <td className="text-end">
-                                    {edit[variableIndex] ? (
-                                      <div>
-                                        <input
-                                          className={`rr-input rr-input-cell ${item.frozen ? "noborder ml-1" : ""
-                                            }`}
-                                          disabled
-                                          value={item.subtotal}
-                                          onChange={(e) => {
-                                            changesubtotaldecimal(e, variableIndex);
-                                          }}
-                                        />
-                                      </div>
-                                    ) : Number.isInteger(item.subtotal) ? (
-                                      Number(item.subtotal).toLocaleString("en-IN")
-                                    ) : !isNaN(item.subtotal) ? (
-                                      item.subtotal > 10000
-                                        ? parseFloat(
-                                          Number(item.subtotal).toFixed(0)
-                                        ).toLocaleString("en-IN")
-                                        : parseFloat(
-                                          Number(item.subtotal).toFixed(2)
-                                        ).toLocaleString("en-IN")
-                                    ) : (
-                                      item.subtotal
-                                    )}
-                                  </td>
-
-                                  <td className="text-center">
-                                    {edit[variableIndex] ? (
-                                      <div className="d-flex justify-content-center gap-1 flex-wrap">
-                                        <button
-                                          className="btn btn-sm rr-success-icon"
-                                          onClick={() => {
-                                            updatedatasetdecimal(variableIndex);
-                                          }}
-                                        >
-                                          <i className="fa fa-check"></i>
-                                        </button>
-
-                                        <button
-                                          className="btn btn-sm rr-danger-icon"
-                                          onClick={() => {
-                                            clearAll(variableIndex);
-                                          }}
-                                        >
-                                          <i className="fas fa-trash-alt"></i>
-                                        </button>
-
-                                        <button
-                                          className="btn btn-sm rr-neutral-icon"
-                                          onClick={() => {
-                                            let arr = [];
-                                            setedit(arr);
-                                            handlecancel(variableIndex);
-                                          }}
-                                        >
-                                          <i className="fa fa-arrow-circle-left"></i>
-                                        </button>
-                                      </div>
-                                    ) : (
-                                      <button
-                                        className="rr-btn rr-btn-secondary rr-btn-icon"
-                                        onClick={() => {
-                                          changesampledataset(originalset);
-                                          let arr = [];
-                                          arr[variableIndex] = true;
-                                          setedit(arr);
-                                        }}
-                                      >
-                                        <i className="fas fa-edit"></i>
-                                      </button>
-                                    )}
-                                  </td>
-                                </tr>
-                              )
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Incremental Accordion */}
-            <div className="accordion-item rr-accordion-item">
-              <h2 className="accordion-header">
-                <button
-                  className="accordion-button rr-accordion-btn collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
-                >
-                  {ExceptionVariables?.variabletypes[1]}
-                </button>
-              </h2>
-
-              <div
-                id="collapseTwo"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body rr-accordion-body">
-                  <div className="rr-table-wrap">
-                    <table className="table rr-variable-table">
-                      <thead>
-                        <tr>
-                          <th>Attribute</th>
-
-                          {sampledataset[0]?.month_data
-                            ?.sort((a, b) => {
-                              if (a.month_year && b.month_year) {
-                                return a.month_year > b.month_year ? 1 : -1;
-                              } else if (a.quarter && b.quarter) {
-                                return a.quarter > b.quarter ? 1 : -1;
-                              } else {
-                                return a.half_year > b.half_year ? 1 : -1;
-                              }
-                            })
-                            .map((it, idx) => (
-                              <th key={idx} className="text-end">
-                                {it?.month_year
-                                  ? it?.month_year
-                                  : it?.half_year
-                                    ? it?.half_year
-                                    : `Q${it?.quarter}`}
-                              </th>
-                            ))}
-
-                          <th className="text-end">Sum/Avg</th>
-                          <th className="text-center">Action</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {sampledataset?.map((item, variableIndex) => {
-                          return (
-                            item?.type === ExceptionVariables?.variabletypes[1] &&
-                            !hidingvariablelist.some(
-                              (variable) => variable === item.attribute_name
-                            ) && (
-                              <tr key={`inc-${variableIndex}`}>
-                                <td className={item.to_show_in === 1 ? "text-danger" : ""}>
-                                  <b>
-                                    {Object.keys(ExceptionVariables?.spellingChanges).some(
-                                      (key) => key === item.attribute_name
-                                    )
-                                      ? ExceptionVariables?.spellingChanges[item.attribute_name]
-                                      : item.attribute_name}
-                                  </b>{" "}
-                                  ({item?.units})
-                                </td>
-
-                                {item.month_data
-                                  ?.sort((a, b) => {
-                                    if (a.month_year && b.month_year) {
-                                      return a.month_year > b.month_year ? 1 : -1;
-                                    } else if (a.quarter && b.quarter) {
-                                      return a.quarter > b.quarter ? 1 : -1;
-                                    } else {
-                                      return a.half_year > b.half_year ? 1 : -1;
-                                    }
-                                  })
-                                  .map((it, valueIndex) => {
-                                    const isBeforeUnlockMonth =
-                                      it?.month_year <= MonthBeforeUnlockMonth;
-                                    return (
-                                      <td className="text-end" key={valueIndex}>
-                                        {edit[variableIndex] ? (
-                                          <div className="rr-edit-cell">
-                                            <input
-                                              className={`rr-input rr-input-cell ${it?.frozen ? "noborder" : ""
-                                                }`}
-                                              value={it.attribute_value}
-                                              disabled={isBeforeUnlockMonth || it?.frozen}
-                                              onChange={(e) => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  changeelementsdecimal(
-                                                    variableIndex,
-                                                    valueIndex,
-                                                    e
-                                                  );
-                                                }
-                                              }}
-                                            />
-                                            <button
-                                              className="btn btn-sm rr-icon-btn"
-                                              onClick={() => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  togglelock(variableIndex, valueIndex);
-                                                }
-                                              }}
-                                              disabled={isBeforeUnlockMonth}
-                                            >
-                                              {it?.frozen === 0 && !isBeforeUnlockMonth ? (
-                                                <i className="fa fa-unlock text-warning"></i>
-                                              ) : (
-                                                <i className="fa fa-lock text-secondary"></i>
-                                              )}
-                                            </button>
-                                          </div>
-                                        ) : Number.isInteger(it.attribute_value) ? (
-                                          Number(it.attribute_value).toLocaleString("en-IN")
-                                        ) : !isNaN(it.attribute_value) ? (
-                                          it.attribute_value > 10000
-                                            ? parseFloat(
-                                              Number(it.attribute_value).toFixed(0)
-                                            ).toLocaleString("en-IN")
-                                            : parseFloat(
-                                              Number(it.attribute_value).toFixed(2)
-                                            ).toLocaleString("en-IN")
-                                        ) : (
-                                          it.attribute_value
-                                        )}
-                                      </td>
-                                    );
-                                  })}
-
-                                <td className="text-end">
-                                  {edit[variableIndex] ? (
-                                    <div>
-                                      <input
-                                        className={`rr-input rr-input-cell ${item.frozen ? "noborder ml-1" : ""
-                                          }`}
-                                        disabled
-                                        value={item.subtotal}
-                                        onChange={(e) => {
-                                          changesubtotaldecimal(e, variableIndex);
-                                        }}
-                                      />
-                                    </div>
-                                  ) : Number.isInteger(item.subtotal) ? (
-                                    Number(item.subtotal).toLocaleString("en-IN")
-                                  ) : !isNaN(item.subtotal) ? (
-                                    item.subtotal > 10000
-                                      ? parseFloat(
-                                        Number(item.subtotal).toFixed(0)
-                                      ).toLocaleString("en-IN")
-                                      : parseFloat(
-                                        Number(item.subtotal).toFixed(2)
-                                      ).toLocaleString("en-IN")
-                                  ) : (
-                                    item.subtotal
-                                  )}
-                                </td>
-
-                                <td className="text-center">
-                                  {edit[variableIndex] ? (
-                                    <div className="d-flex justify-content-center gap-1 flex-wrap">
-                                      <button
-                                        className="btn btn-sm rr-success-icon"
-                                        onClick={() => {
-                                          updatedatasetdecimal(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-check"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-danger-icon"
-                                        onClick={() => {
-                                          clearAll(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fas fa-trash-alt"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-neutral-icon"
-                                        onClick={() => {
-                                          let arr = [];
-                                          setedit(arr);
-                                          handlecancel(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-arrow-circle-left"></i>
-                                      </button>
-                                    </div>
-                                  ) : (
-                                    <button
-                                      className="rr-btn rr-btn-secondary rr-btn-icon"
-                                      onClick={() => {
-                                        changesampledataset(originalset);
-                                        let arr = [];
-                                        arr[variableIndex] = true;
-                                        setedit(arr);
-                                      }}
-                                    >
-                                      <i className="fas fa-edit"></i>
-                                    </button>
-                                  )}
-                                </td>
-                              </tr>
-                            )
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Core Accordion */}
-            <div className="accordion-item rr-accordion-item">
-              <h2 className="accordion-header">
-                <button
-                  className="accordion-button rr-accordion-btn collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
-                >
-                  {ExceptionVariables?.variabletypes[2]}
-                </button>
-              </h2>
-
-              <div
-                id="collapseThree"
-                className="accordion-collapse collapse"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body rr-accordion-body">
-                  <div className="rr-table-wrap">
-                    <table className="table rr-variable-table">
-                      <thead>
-                        <tr>
-                          <th>Core Type</th>
-                          <th>Attribute</th>
-
-                          {sampledataset[0]?.month_data
-                            ?.sort((a, b) => {
-                              if (a.month_year && b.month_year) {
-                                return a.month_year > b.month_year ? 1 : -1;
-                              } else if (a.quarter && b.quarter) {
-                                return a.quarter > b.quarter ? 1 : -1;
-                              } else {
-                                return a.half_year > b.half_year ? 1 : -1;
-                              }
-                            })
-                            .map((it, idx) => (
-                              <th key={idx} className="text-end">
-                                {it?.month_year
-                                  ? it?.month_year
-                                  : it?.half_year
-                                    ? it?.half_year
-                                    : `Q${it?.quarter}`}
-                              </th>
-                            ))}
-
-                          <th className="text-end">Last Price/ Max/ Sum</th>
-                          <th className="text-center">Action</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {sampledataset?.map((item, variableIndex) => {
-                          return (
-                            item?.type === ExceptionVariables?.variabletypes[2] &&
-                            !hidingvariablelist.some(
-                              (variable) => variable === item.attribute_name
-                            ) && (
-                              <tr key={`core-${variableIndex}`}>
-                                <td
-                                  className={
-                                    item.variable_type === "core_ITC"
-                                      ? "text-success"
-                                      : "text-primary"
-                                  }
-                                >
-                                  <b>{item.variable_type}</b>
-                                </td>
-
-                                <td className={item.to_show_in === 1 ? "text-danger" : ""}>
-                                  <b>
-                                    {Object.keys(ExceptionVariables?.spellingChanges).some(
-                                      (key) => key === item.attribute_name
-                                    )
-                                      ? ExceptionVariables?.spellingChanges[item.attribute_name]
-                                      : item.attribute_name}
-                                  </b>{" "}
-                                  ({item?.units})
-                                </td>
-
-                                {item.month_data
-                                  ?.sort((a, b) => {
-                                    if (a.month_year && b.month_year) {
-                                      return a.month_year > b.month_year ? 1 : -1;
-                                    } else if (a.quarter && b.quarter) {
-                                      return a.quarter > b.quarter ? 1 : -1;
-                                    } else {
-                                      return a.half_year > b.half_year ? 1 : -1;
-                                    }
-                                  })
-                                  .map((it, valueIndex) => {
-                                    const isBeforeUnlockMonth =
-                                      it?.month_year <= MonthBeforeUnlockMonth;
-                                    return (
-                                      <td className="text-end" key={valueIndex}>
-                                        {edit[variableIndex] ? (
-                                          <div className="rr-edit-cell">
-                                            <input
-                                              className={`rr-input rr-input-cell ${it?.frozen ? "noborder" : ""
-                                                }`}
-                                              value={it.attribute_value}
-                                              disabled={isBeforeUnlockMonth || it?.frozen}
-                                              onChange={(e) => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  changeelementsdecimal(
-                                                    variableIndex,
-                                                    valueIndex,
-                                                    e
-                                                  );
-                                                }
-                                              }}
-                                            />
-                                            <button
-                                              className="btn btn-sm rr-icon-btn"
-                                              onClick={() => {
-                                                if (!isBeforeUnlockMonth) {
-                                                  togglelock(variableIndex, valueIndex);
-                                                }
-                                              }}
-                                              disabled={isBeforeUnlockMonth}
-                                            >
-                                              {it?.frozen === 0 && !isBeforeUnlockMonth ? (
-                                                <i className="fa fa-unlock text-warning"></i>
-                                              ) : (
-                                                <i className="fa fa-lock text-secondary"></i>
-                                              )}
-                                            </button>
-                                          </div>
-                                        ) : Number.isInteger(it.attribute_value) ? (
-                                          Number(it.attribute_value).toLocaleString("en-IN")
-                                        ) : !isNaN(it.attribute_value) ? (
-                                          it.attribute_value > 10000
-                                            ? parseFloat(
-                                              Number(it.attribute_value).toFixed(0)
-                                            ).toLocaleString("en-IN")
-                                            : parseFloat(
-                                              Number(it.attribute_value).toFixed(2)
-                                            ).toLocaleString("en-IN")
-                                        ) : (
-                                          it.attribute_value
-                                        )}
-                                      </td>
-                                    );
-                                  })}
-
-                                <td className="text-end">
-                                  {edit[variableIndex] ? (
-                                    <div>
-                                      <input
-                                        className={`rr-input rr-input-cell ${item.frozen ? "noborder ml-1" : ""
-                                          }`}
-                                        disabled
-                                        value={item.subtotal}
-                                        onChange={(e) => {
-                                          changesubtotaldecimal(e, variableIndex);
-                                        }}
-                                      />
-                                    </div>
-                                  ) : Number.isInteger(item.subtotal) ? (
-                                    Number(item.subtotal).toLocaleString("en-IN")
-                                  ) : !isNaN(item.subtotal) ? (
-                                    item.subtotal > 10000
-                                      ? parseFloat(
-                                        Number(item.subtotal).toFixed(0)
-                                      ).toLocaleString("en-IN")
-                                      : parseFloat(
-                                        Number(item.subtotal).toFixed(2)
-                                      ).toLocaleString("en-IN")
-                                  ) : (
-                                    item.subtotal
-                                  )}
-                                </td>
-
-                                <td className="text-center">
-                                  {edit[variableIndex] ? (
-                                    <div className="d-flex justify-content-center gap-1 flex-wrap">
-                                      <button
-                                        className="btn btn-sm rr-success-icon"
-                                        onClick={() => {
-                                          updatedatasetdecimal(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-check"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-danger-icon"
-                                        onClick={() => {
-                                          clearAll(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fas fa-trash-alt"></i>
-                                      </button>
-
-                                      <button
-                                        className="btn btn-sm rr-neutral-icon"
-                                        onClick={() => {
-                                          let arr = [];
-                                          setedit(arr);
-                                          handlecancel(variableIndex);
-                                        }}
-                                      >
-                                        <i className="fa fa-arrow-circle-left"></i>
-                                      </button>
-                                    </div>
-                                  ) : (
-                                    <button
-                                      className="rr-btn rr-btn-secondary rr-btn-icon"
-                                      onClick={() => {
-                                        changesampledataset(originalset);
-                                        let arr = [];
-                                        arr[variableIndex] = true;
-                                        setedit(arr);
-                                      }}
-                                    >
-                                      <i className="fas fa-edit"></i>
-                                    </button>
-                                  )}
-                                </td>
-                              </tr>
-                            )
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+          <div className="rr-mix-workspace">
+            <div className="rr-mix-blocks">
+              {renderMixBlock({
+                typeName: ExceptionVariables?.variabletypes[0],
+                zeroTvOnly: false,
+                showZeroTvToggle: true,
+                tone: "media",
+              })}
+              {renderMixBlock({
+                typeName: ExceptionVariables?.variabletypes[1],
+                tone: "incremental",
+              })}
+              {renderMixBlock({
+                typeName: ExceptionVariables?.variabletypes[2],
+                showCoreType: true,
+                tone: "core",
+              })}
             </div>
           </div>
         </div>

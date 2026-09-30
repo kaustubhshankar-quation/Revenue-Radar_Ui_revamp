@@ -14,7 +14,6 @@ import SingleBarChart1 from "./SingleBarChart1";
 import SingleBarChart2 from "./SingleBarChart2";
 import SingleBarChart3 from "./SingleBarChart3";
 import LineChart1 from "./LineChart1";
-import VariableTableYearly from "./VariableTableYearly";
 import { downloadPdf, uploadPDF, notifyRequestError, requireLogin, defaultJsonHeaders, formatPlotMonthYear, getCurrentFormattedTime, getBrandAbb, isValidScenarioName } from "../HelperFunction/helperFunction";
 import { loadBrandFy, loadMarkets } from "../../Redux/session/sessionSlice";
 import SingleBarChart4 from "./SingleBarChart4";
@@ -3290,24 +3289,14 @@ function Simulator() {
                   </button>
                 </div>
 
-                {sampledataset[0]?.month_data?.length === 1 ? (
-                  <VariableTableYearly
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                ) : (
-                  <VariableTable
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                    endDate={endDate}
-                  />
-                )}
+                <VariableTable
+                  sampledataset={sampledataset}
+                  changesampledataset={changesampledataset}
+                  originalset={originalset}
+                  changeoriginalset={changeoriginalset}
+                  originaldatasetforcolorcoding={originaldatasetforcolorcoding}
+                  endDate={endDate}
+                />
               </div>
             )}
           </div>
@@ -4163,24 +4152,14 @@ function Simulator() {
               "Loading..."
             ) : (
               <>
-                {sampledataset[0]?.month_data?.length === 1 ? (
-                  <VariableTableYearly
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                ) : (
-                  <VariableTable
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                    endDate={endDate}
-                  />
-                )}
+                <VariableTable
+                  sampledataset={sampledataset}
+                  changesampledataset={changesampledataset}
+                  originalset={originalset}
+                  changeoriginalset={changeoriginalset}
+                  originaldatasetforcolorcoding={originaldatasetforcolorcoding}
+                  endDate={endDate}
+                />
               </>
             )}
           </div>
@@ -4239,23 +4218,14 @@ function Simulator() {
               "Loading..."
             ) : (
               <>
-                {sampledataset[0]?.month_data?.length === 1 ? (
-                  <VariableTableYearly
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                ) : (
-                  <VariableTable
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                )}
+                <VariableTable
+                  sampledataset={sampledataset}
+                  changesampledataset={changesampledataset}
+                  originalset={originalset}
+                  changeoriginalset={changeoriginalset}
+                  originaldatasetforcolorcoding={originaldatasetforcolorcoding}
+                  endDate={endDate}
+                />
               </>
             )}
           </div>
@@ -4312,23 +4282,14 @@ function Simulator() {
               "Loading..."
             ) : (
               <>
-                {sampledataset[0]?.month_data?.length === 1 ? (
-                  <VariableTableYearly
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                ) : (
-                  <VariableTable
-                    sampledataset={sampledataset}
-                    changesampledataset={changesampledataset}
-                    originalset={originalset}
-                    changeoriginalset={changeoriginalset}
-                    originaldatasetforcolorcoding={originaldatasetforcolorcoding}
-                  />
-                )}
+                <VariableTable
+                  sampledataset={sampledataset}
+                  changesampledataset={changesampledataset}
+                  originalset={originalset}
+                  changeoriginalset={changeoriginalset}
+                  originaldatasetforcolorcoding={originaldatasetforcolorcoding}
+                  endDate={endDate}
+                />
               </>
             )}
           </div>
