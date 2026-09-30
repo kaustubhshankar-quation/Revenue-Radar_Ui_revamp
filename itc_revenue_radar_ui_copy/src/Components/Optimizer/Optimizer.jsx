@@ -2382,10 +2382,10 @@ function Optimizer() {
 
             {upperboundlowerboundscreen && (
               <>
-                <div className="rr-card rr-card-inner mt-4">
-                  <div className="row g-3">
-                    <div className="col-12 col-lg-6">
-                      <label className="rr-label"><strong>Objective</strong></label>
+                <div className="opt-setup mt-3">
+                  <div className="opt-setup-grid">
+                    <div className="opt-setup-field">
+                      <label className="rr-label">Objective</label>
                       <Select
                         classNamePrefix="rr-select"
                         placeholder="Select"
@@ -2434,14 +2434,12 @@ function Optimizer() {
                     </div>
 
                     {selectedobjective !== "Achieve goal with minimal spends" && (
-                      <div className="col-12 col-lg-6">
-                        <label className="rr-label">
-                          <strong>Overall Marketing Budget</strong>
-                        </label>
+                      <div className="opt-setup-field opt-setup-field--budget">
+                        <label className="rr-label">Overall Marketing Budget</label>
 
                         {(selectedobjective === "Maintain Sales and Minimize Spends" ||
                           selectedobjective === "Maintain Spends to Maximize Sales") ? (
-                          <div className="opt-budget-display mt-2">
+                          <div className="opt-budget-display">
                             <span className="opt-budget-currency">₹</span>
                             <span className="opt-budget-value">
                               {Number(totalBudget || 0).toLocaleString("en-IN")}
@@ -2450,7 +2448,7 @@ function Optimizer() {
                         ) : (
                           <input
                             type="number"
-                            className="form-control rr-input my-2 w-100"
+                            className="form-control rr-input w-100"
                             value={totalBudget}
                             onChange={(e) => {
                               settotalBudget(e.target.value);
@@ -2464,7 +2462,7 @@ function Optimizer() {
 
                     {selectedobjective === "Achieve goal with minimal spends" &&
                       (loader2 ? (
-                        <div className="my-3 d-flex flex-column align-items-center justify-content-center">
+                        <div className="opt-setup-field opt-setup-field--wide my-1 d-flex flex-column align-items-center justify-content-center">
                           <div className="rr-dot-loader">
                             <div></div><div></div><div></div>
                           </div>
@@ -2473,60 +2471,61 @@ function Optimizer() {
                           </div>
                         </div>
                       ) : (
-                        <div className="col-12">
-                          <div className="row g-3 my-2">
-                            <div className="col-12 col-md-6">
-                              <label className="rr-label">
-                                <strong>Target Percentage Growth (%)</strong>
-                              </label>
-                              <input
-                                className="form-control rr-input mt-2"
-                                type="number"
-                                placeholder="% increase/decrease"
-                                value={percentagegrowthrqd}
-                                min={0}
-                                onChange={(e) => {
-                                  if (e.target.value >= 0) {
-                                    setpercentagegrowthrqd(e.target.value);
-                                    handlemodifytotalsalesobj3(e.target.value);
-                                  } else {
-                                    setpercentagegrowthrqd(0);
-                                  }
-                                }}
-                              />
-                            </div>
+                        <>
+                          <div className="opt-setup-field">
+                            <label className="rr-label">Target Percentage Growth (%)</label>
+                            <input
+                              className="form-control rr-input"
+                              type="number"
+                              placeholder="% increase/decrease"
+                              value={percentagegrowthrqd}
+                              min={0}
+                              onChange={(e) => {
+                                if (e.target.value >= 0) {
+                                  setpercentagegrowthrqd(e.target.value);
+                                  handlemodifytotalsalesobj3(e.target.value);
+                                } else {
+                                  setpercentagegrowthrqd(0);
+                                }
+                              }}
+                            />
+                          </div>
 
-                            <div className="col-12 col-md-6">
-                              <div className="opt-budget-display mt-4">
-                                Total Sales:{" "}
+                          <div className="opt-setup-field">
+                            <label className="rr-label">Total Sales</label>
+                            <div className="opt-budget-display">
+                              <span className="opt-budget-value">
                                 {(salesnooriginalobj3 * (percentagegrowthrqd / 100 + 1) / 1000)?.toFixed(2)} Tonnes
-                              </div>
+                              </span>
                             </div>
                           </div>
 
                           {budgetconstraintrequired && (
-                            <div className="d-flex align-items-center gap-2 mt-2">
-                              <span>Rs</span>
-                              <input
-                                className="form-control rr-input w-50"
-                                value={totalBudget ? Number(totalBudget).toLocaleString("en-IN") : 0}
-                                onChange={(e) => {
-                                  const rawValue = e.target.value.replace(/,/g, "") || 0;
-                                  if (!isNaN(rawValue) && rawValue !== "") {
-                                    handlemodifybudget(rawValue);
-                                  }
-                                }}
-                              />
+                            <div className="opt-setup-field">
+                              <label className="rr-label">Budget constraint</label>
+                              <div className="opt-budget-display opt-budget-input-wrap">
+                                <span className="opt-budget-currency">₹</span>
+                                <input
+                                  className="form-control rr-input border-0 bg-transparent"
+                                  value={totalBudget ? Number(totalBudget).toLocaleString("en-IN") : 0}
+                                  onChange={(e) => {
+                                    const rawValue = e.target.value.replace(/,/g, "") || 0;
+                                    if (!isNaN(rawValue) && rawValue !== "") {
+                                      handlemodifybudget(rawValue);
+                                    }
+                                  }}
+                                />
+                              </div>
                             </div>
                           )}
-                        </div>
+                        </>
                       ))}
                   </div>
-
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-2">
                   <UbLbTable
+                    objective={selectedobjective}
                     sampledataset2={sampledataset2}
                     originalset2={originalset2}
                     handleoriginaldataset2change={handleoriginaldataset2change}
@@ -3183,144 +3182,149 @@ function Optimizer() {
               )}
 
               {upperboundlowerboundscreen && (
-                <div className="rr-card rr-card-inner mt-4">
-                  <div className="col-sm">
-                    <label className="rr-label">
-                      <strong>Objective</strong>
-                    </label>
+                <>
+                  <div className="opt-setup mt-3">
+                    <div className="opt-setup-grid">
+                      <div className="opt-setup-field">
+                        <label className="rr-label">Objective</label>
+                        <Select
+                          classNamePrefix="rr-select"
+                          placeholder="Select Objective"
+                          options={[
+                            { label: "Maintain Spends to Maximize Sales", value: "Maintain Spends to Maximize Sales" },
+                            { label: "Maintain Sales and Minimize Spends", value: "Maintain Sales and Minimize Spends" },
+                            ...(!selectedscenarioname?.startsWith("M")
+                              ? [{ label: "Achieve goal with minimal spends", value: "Achieve goal with minimal spends" }]
+                              : []),
+                          ]}
+                          value={
+                            selectedobjective && selectedobjective !== "Select"
+                              ? { label: selectedobjective, value: selectedobjective }
+                              : null
+                          }
+                          onChange={(option) => {
+                            const value = option?.value || "Select";
 
-                    <Select
-                      classNamePrefix="rr-select"
-                      placeholder="Select Objective"
-                      options={[
-                        { label: "Maintain Spends to Maximize Sales", value: "Maintain Spends to Maximize Sales" },
-                        { label: "Maintain Sales and Minimize Spends", value: "Maintain Sales and Minimize Spends" },
-                        ...(!selectedscenarioname?.startsWith("M")
-                          ? [{ label: "Achieve goal with minimal spends", value: "Achieve goal with minimal spends" }]
-                          : []),
-                      ]}
-                      value={
-                        selectedobjective && selectedobjective !== "Select"
-                          ? { label: selectedobjective, value: selectedobjective }
-                          : null
-                      }
-                      onChange={(option) => {
-                        const value = option?.value || "Select";
+                            setselectedobjective(value);
+                            handlefetchbudget(value);
+                            setsalesno(0);
+                            setpercentagegrowthrqd(0);
+                            setbudgetconstraintrequired(false);
 
-                        setselectedobjective(value);
-                        handlefetchbudget(value);
-                        setsalesno(0);
-                        setpercentagegrowthrqd(0);
-                        setbudgetconstraintrequired(false);
-
-                        if (value === "Achieve goal with minimal spends") {
-                          handlefetchtotalsalesnoforobjective3();
-                        }
-                      }}
-                      menuPlacement="auto"
-                      menuPortalTarget={document.body}
-                      styles={{
-                        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
-                      }}
-                    />
-                  </div>
-
-                  {selectedobjective !== "Achieve goal with minimal spends" && (
-                    <div className="col-sm mt-3">
-                      <label className="rr-label"><strong>Overall Marketing Budget</strong></label>
-                      {(selectedobjective === "Maintain Sales and Minimize Spends" ||
-                        selectedobjective === "Maintain Spends to Maximize Sales") ? (
-                        <div className="opt-budget-display mt-2">
-                          Rs {totalBudget?.toLocaleString("en-IN")}
-                        </div>
-                      ) : (
-                        <input
-                          className="form-control rr-input my-2 w-50"
-                          value={totalBudget}
-                          onChange={(e) => {
-                            settotalBudget(e.target.value);
-                            handlemodifybudget(e.target.value);
+                            if (value === "Achieve goal with minimal spends") {
+                              handlefetchtotalsalesnoforobjective3();
+                            }
+                          }}
+                          menuPlacement="auto"
+                          menuPortalTarget={document.body}
+                          styles={{
+                            menuPortal: (base) => ({ ...base, zIndex: 9999 }),
                           }}
                         />
-                      )}
-                    </div>
-                  )}
-
-                  {selectedobjective === "Achieve goal with minimal spends" &&
-                    (loader6 ? (
-                      <div className="my-3 d-flex flex-column align-items-center justify-content-center">
-                        <div className="rr-dot-loader">
-                          <div></div><div></div><div></div>
-                        </div>
-                        <div className="mt-2 fw-semibold rr-muted-text">
-                          Fetching Total Sales Volume
-                        </div>
                       </div>
-                    ) : (
-                      <>
-                        <div className="row my-3 px-1">
-                          <div className="col-sm">
-                            <label className="rr-label"><strong>Target Percentage Growth (%)</strong></label>
+
+                      {selectedobjective !== "Achieve goal with minimal spends" && (
+                        <div className="opt-setup-field opt-setup-field--budget">
+                          <label className="rr-label">Overall Marketing Budget</label>
+                          {(selectedobjective === "Maintain Sales and Minimize Spends" ||
+                            selectedobjective === "Maintain Spends to Maximize Sales") ? (
+                            <div className="opt-budget-display">
+                              <span className="opt-budget-currency">₹</span>
+                              <span className="opt-budget-value">
+                                {Number(totalBudget || 0).toLocaleString("en-IN")}
+                              </span>
+                            </div>
+                          ) : (
                             <input
-                              className="form-control rr-input mt-2"
-                              type="number"
-                              placeholder="% increase/decrease"
-                              value={percentagegrowthrqd}
-                              min={0}
+                              className="form-control rr-input w-100"
+                              value={totalBudget}
                               onChange={(e) => {
-                                if (e.target.value >= 0) {
-                                  setpercentagegrowthrqd(e.target.value);
-                                  handlemodifytotalsalesobj3(e.target.value);
-                                } else {
-                                  setpercentagegrowthrqd(0);
-                                }
+                                settotalBudget(e.target.value);
+                                handlemodifybudget(e.target.value);
                               }}
                             />
-                          </div>
+                          )}
+                        </div>
+                      )}
 
-                          <div className="col-sm d-flex align-items-end">
-                            <div className="opt-budget-display w-100">
-                              Total Sales:{" "}
-                              {(salesnooriginalobj3 * (percentagegrowthrqd / 100 + 1) / 1000)?.toFixed(2)} Tonnes
+                      {selectedobjective === "Achieve goal with minimal spends" &&
+                        (loader6 ? (
+                          <div className="opt-setup-field opt-setup-field--wide my-1 d-flex flex-column align-items-center justify-content-center">
+                            <div className="rr-dot-loader">
+                              <div></div><div></div><div></div>
+                            </div>
+                            <div className="mt-2 fw-semibold rr-muted-text">
+                              Fetching Total Sales Volume
                             </div>
                           </div>
-                        </div>
+                        ) : (
+                          <>
+                            <div className="opt-setup-field">
+                              <label className="rr-label">Target Percentage Growth (%)</label>
+                              <input
+                                className="form-control rr-input"
+                                type="number"
+                                placeholder="% increase/decrease"
+                                value={percentagegrowthrqd}
+                                min={0}
+                                onChange={(e) => {
+                                  if (e.target.value >= 0) {
+                                    setpercentagegrowthrqd(e.target.value);
+                                    handlemodifytotalsalesobj3(e.target.value);
+                                  } else {
+                                    setpercentagegrowthrqd(0);
+                                  }
+                                }}
+                              />
+                            </div>
 
-                        {budgetconstraintrequired && (
-                          <div className="d-flex align-items-center gap-2 mt-2">
-                            <span>Rs</span>
-                            <input
-                              className="form-control rr-input w-50"
-                              value={totalBudget ? Number(totalBudget).toLocaleString("en-IN") : 0}
-                              onChange={(e) => {
-                                const rawValue = e.target.value.replace(/,/g, "") || 0;
-                                if (!isNaN(rawValue) && rawValue !== "") {
-                                  handlemodifybudget(rawValue);
-                                }
-                              }}
-                            />
-                          </div>
-                        )}
-                      </>
-                    ))}
+                            <div className="opt-setup-field">
+                              <label className="rr-label">Total Sales</label>
+                              <div className="opt-budget-display">
+                                <span className="opt-budget-value">
+                                  {(salesnooriginalobj3 * (percentagegrowthrqd / 100 + 1) / 1000)?.toFixed(2)} Tonnes
+                                </span>
+                              </div>
+                            </div>
+
+                            {budgetconstraintrequired && (
+                              <div className="opt-setup-field">
+                                <label className="rr-label">Budget constraint</label>
+                                <div className="opt-budget-display opt-budget-input-wrap">
+                                  <span className="opt-budget-currency">₹</span>
+                                  <input
+                                    className="form-control rr-input border-0 bg-transparent"
+                                    value={totalBudget ? Number(totalBudget).toLocaleString("en-IN") : 0}
+                                    onChange={(e) => {
+                                      const rawValue = e.target.value.replace(/,/g, "") || 0;
+                                      if (!isNaN(rawValue) && rawValue !== "") {
+                                        handlemodifybudget(rawValue);
+                                      }
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        ))}
+                    </div>
+                  </div>
 
                   {selectedobjective !== "Select" && (
-                    <>
-                      <div className="mt-4">
-                        <UbLbTable
-                          objective={selectedobjective}
-                          sampledataset2={sampledataset2}
-                          originalset2={originalset2}
-                          handleoriginaldataset2change={handleoriginaldataset2change}
-                          handlesampledataset2change={handlesampledataset2change}
-                          originalsetublboriginal={originalsetublboriginal}
-                          onOptimize={handleoptimize}
-                          isprocessing={isprocessing}
-                        />
-                      </div>
-                    </>
+                    <div className="mt-2">
+                      <UbLbTable
+                        objective={selectedobjective}
+                        sampledataset2={sampledataset2}
+                        originalset2={originalset2}
+                        handleoriginaldataset2change={handleoriginaldataset2change}
+                        handlesampledataset2change={handlesampledataset2change}
+                        originalsetublboriginal={originalsetublboriginal}
+                        onOptimize={handleoptimize}
+                        isprocessing={isprocessing}
+                      />
+                    </div>
                   )}
-                </div>
+                </>
               )}
             </>
           )}
